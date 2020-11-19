@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">Tech4Life</string>
+    <string name="title_report">Reason for reporting this context</string>
+    <string name="spam_option">Spam</string>
+    <string name="rules_violation_option">Rules Violation</string>
+    <string name="harashment_option">Harashment</string>
+    <string name="infringes_copyright_option">Infringes Copyright</string>
+    <string name="login_title">Login</string>
+    <string name="tech4life_title">TECH4LIFE</string>
+    <string name="login_with">Login with Username or Email</string>
+    <string name="forgot_your_password">Forgot your password ?</string>
+    <string name="or_login_with">Or login with</string>
+    <string name="no_have_account">No have an account?</string>
+    <string name="welcome_to_tech4life">Welcome to Tech4Life! Join us to find useful information required to improve your skills</string>
+    <string name="already_have_account">Already have an account</string>
+
+
+
 </resources>

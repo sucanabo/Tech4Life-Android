@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/page_1"
+        android:enabled="true"
+        android:icon="@android:drawable/btn_star"
+        android:title="FAVORITES" />
+    <item
+        android:id="@+id/page_2"
+        android:enabled="true"
+        android:icon="@mipmap/earth_ico_foreground"
+        android:title="NEWEST" />
+    <item
+        android:id="@+id/page_3"
+        android:enabled="true"
+        android:icon="@mipmap/fire_ico_foreground"
+        android:title="TRENDING" />
+    <item
+        android:id="@+id/page_4"
+        android:enabled="true"
+        android:icon="@android:drawable/ic_popup_reminder"
+        android:title="NOTIFICATIONS" />
+</menu>
