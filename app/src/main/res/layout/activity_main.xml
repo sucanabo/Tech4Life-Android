@@ -56,5 +56,22 @@
             app:menu="@menu/bottom_navigation_menu" />
 
     </LinearLayout>
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/fab_container"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floating_action_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="60dp"
+            android:src="@drawable/ic_up_foreground"
+            app:backgroundTint="@color/colorPrimary" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    />
 </androidx.constraintlayout.widget.ConstraintLayout>
