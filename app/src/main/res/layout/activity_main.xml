@@ -28,19 +28,23 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <!-- Note: A RecyclerView can also be used -->
+
+
+    <!-- Bottom nav bar-->
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <!-- Scrollable content -->
 
     </androidx.core.widget.NestedScrollView>
 
-
-
-    <!-- Bottom nav bar-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
