@@ -89,11 +89,11 @@
                 android:text="Write a respone..."
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/ivUserAvatar"
-                app:layout_constraintTop_toTopOf="@+id/ivUserAvatar" />
+                app:layout_constraintStart_toEndOf="@+id/ivUserAvt"
+                app:layout_constraintTop_toTopOf="@+id/ivUserAvt" />
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/ivUserAvatar"
+                android:id="@+id/ivUserAvt"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_marginTop="16dp"
