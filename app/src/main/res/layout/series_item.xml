@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="fitXY"
-            app:srcCompat="@tools:sample/avatars[0]" />
+            app:srcCompat="@drawable/avt" />
 
     </androidx.cardview.widget.CardView>
 
