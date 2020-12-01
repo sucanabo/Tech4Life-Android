@@ -7,23 +7,18 @@
     android:layout_height="match_parent">
 
 
-    <androidx.cardview.widget.CardView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/ivUserAvatar"
         android:layout_width="140dp"
         android:layout_height="140dp"
         android:layout_marginStart="132dp"
         android:layout_marginTop="20dp"
-        app:cardCornerRadius="64dp"
-        app:cardElevation="0dp"
+        app:civ_border_color="#FF000000"
+        app:civ_border_width="0dp"
+        android:src="@drawable/avt"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/imageView6"
-            android:layout_width="match_parent"
-            android:layout_height="139dp"
-            tools:srcCompat="@drawable/avt" />
-    </androidx.cardview.widget.CardView>
+    </de.hdodenhof.circleimageview.CircleImageView>
 
     <TextView
         android:id="@+id/user_displayname"
