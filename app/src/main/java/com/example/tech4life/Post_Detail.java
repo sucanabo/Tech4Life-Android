@@ -16,6 +16,7 @@ public class Post_Detail extends AppCompatActivity {
         //Assign variable
         drawerLayout = findViewById(R.id.drawer_layout);
     }
+    //Method
     public void ClickMenu(View view){
         MainActivity.openDrawer(drawerLayout);
     }
