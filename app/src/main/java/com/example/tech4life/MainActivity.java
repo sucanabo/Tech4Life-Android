@@ -17,17 +17,25 @@ import android.widget.LinearLayout;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 public class MainActivity extends AppCompatActivity {
-    //Inittalize variable
+    
     DrawerLayout drawerLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
+      setContentView(R.layout.activity_main);
+
+
+
         //setContentView(R.layout.report_screen);
         //setContentView(R.layout.login_activity_screen);
         //setContentView(R.layout.register_activity_screen);
         //setContentView(R.layout.post_activity_screen);
+
+//        setContentView(R.layout.user_activity_screen);
+
         //setContentView(R.layout.user_activity_screen);
+
 
         //Assign variable
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -73,10 +81,10 @@ public class MainActivity extends AppCompatActivity {
 //        //redirect activity to noitification
 //        redirecActivity(this,);
 //    }
-//    public void ClickAnnouncement(View view){
-//        //redirect activity to announcement
-//        redirecActivity(this,);
-//    }
+    public void ClickAnnouncement(View view){
+        //redirect activity to announcement
+        redirecActivity(this, AnnouncementActivity.class);
+    }
 //    public void ClicksSetting(View view){
 //        //redirect activity to setting
 //        redirecActivity(this,);
