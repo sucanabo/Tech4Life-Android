@@ -3,6 +3,8 @@ package com.example.tech4life;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -16,13 +18,28 @@ import android.widget.LinearLayout;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
 public class MainActivity extends AppCompatActivity {
     //Inittalize variable
     DrawerLayout drawerLayout;
+    private ArrayList<Post_Item> mPostItem;
+    private RecyclerView mRecyclerPost;
+    private PostItemAdapter mPostItemAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mRecyclerPost = findViewById(R.id.post_recyclerView);
+        mPostItem = new ArrayList<>();
+        createPostItem();
+        mPostItemAdapter = new PostItemAdapter(this,mPostItem);
+        mRecyclerPost.setAdapter(mPostItemAdapter);
+        mRecyclerPost.setLayoutManager(new LinearLayoutManager(this));
+
         //setContentView(R.layout.report_screen);
         //setContentView(R.layout.login_activity_screen);
         //setContentView(R.layout.register_activity_screen);
@@ -31,7 +48,22 @@ public class MainActivity extends AppCompatActivity {
 
         //Assign variable
         drawerLayout = findViewById(R.id.drawer_layout);
+        //recycler post item
     }
+
+    private void createPostItem() {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = null;
+        try {
+            date = formatter.parse("12/12/2020");
+        } catch (ParseException e) {
+            return;
+        }
+        for(int i =0; i<10; i++){
+            mPostItem.add(new Post_Item("Title " + i,R.drawable.avt,"Dustin Dinh",R.drawable.img1,date));
+        }
+    }
+
     public void ClickMenu(View view){
         //Open Drawer
         openDrawer(drawerLayout);
