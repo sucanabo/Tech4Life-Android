@@ -10,20 +10,32 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
+
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 public class MainActivity extends AppCompatActivity {
-    //Inittalize variable
+    
     DrawerLayout drawerLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
       setContentView(R.layout.activity_main);
+
+
+
         //setContentView(R.layout.report_screen);
         //setContentView(R.layout.login_activity_screen);
         //setContentView(R.layout.register_activity_screen);
         //setContentView(R.layout.post_activity_screen);
+
 //        setContentView(R.layout.user_activity_screen);
+
+        //setContentView(R.layout.user_activity_screen);
+
 
         //Assign variable
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -117,7 +129,6 @@ public class MainActivity extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         activity.startActivity(intent);
     }
-
     @Override
     protected void onPause() {
         super.onPause();
