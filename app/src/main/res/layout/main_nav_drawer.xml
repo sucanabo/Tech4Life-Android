@@ -153,6 +153,7 @@
             android:layout_height="40dp"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="0dp"
+
             android:src="@drawable/ic_notification" />
 
         <TextView
@@ -160,7 +161,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="12dp"
-            android:text="Notification"
+
+            android:text="Notifications"
             android:textColor="@color/colorMute"
             android:textSize="16dp" />
 

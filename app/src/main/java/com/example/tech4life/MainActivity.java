@@ -77,10 +77,10 @@ public class MainActivity extends AppCompatActivity {
 //        //redirect activity to category
 //        redirecActivity(this,);
 //    }
-//    public void ClickNotification(View view){
-//        //redirect activity to noitification
-//        redirecActivity(this,);
-//    }
+    public void ClickNotification(View view){
+        //redirect activity to noitification
+        redirecActivity(this, NotificationActivity.class);
+    }
     public void ClickAnnouncement(View view){
         //redirect activity to announcement
         redirecActivity(this, AnnouncementActivity.class);
