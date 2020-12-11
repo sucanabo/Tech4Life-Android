@@ -1,5 +1,6 @@
 package com.example.tech4life;
 
+import android.app.Notification;
 import android.os.Bundle;
 import android.view.View;
 
@@ -34,6 +35,9 @@ public class NotificationActivity extends AppCompatActivity {
 
     public void ClickNotification(View view){
         recreate();
+    }
+    public void ClickSeries(View view){
+        MainActivity.redirecActivity(this, SerieActivity.class);
     }
 
     public void ClickAnnouncement(View view){

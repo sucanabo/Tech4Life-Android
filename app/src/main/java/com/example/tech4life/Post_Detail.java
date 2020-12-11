@@ -44,9 +44,7 @@ public class Post_Detail extends AppCompatActivity {
         bottomSheetDialog.setContentView(bottomSheetView);
         bottomSheetDialog.show();
     }
-    public void clickBack(View view){
-        
-    }
+
     @Override
     protected void onPause() {
         super.onPause();

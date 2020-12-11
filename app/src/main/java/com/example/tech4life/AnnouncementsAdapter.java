@@ -29,7 +29,7 @@ public class AnnouncementsAdapter extends RecyclerView.Adapter<AnnouncementsAdap
         public ViewHolder(@NonNull View itemView){
             super(itemView);
             mImage = itemView.findViewById(R.id.imgNotification);
-            mContent = itemView.findViewById(R.id.txtContentAnnouncement);
+            mContent = itemView.findViewById(R.id.txtUsernameSeries);
         }
     }
 

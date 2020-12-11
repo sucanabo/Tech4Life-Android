@@ -15,7 +15,7 @@
         app:srcCompat="@drawable/ic_info" />
 
     <TextView
-        android:id="@+id/txtContentAnnouncement"
+        android:id="@+id/txtUsernameSeries"
         android:layout_width="297dp"
         android:layout_height="65dp"
         android:text="TextView"

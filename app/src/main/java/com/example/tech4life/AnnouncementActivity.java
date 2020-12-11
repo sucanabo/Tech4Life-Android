@@ -35,6 +35,12 @@ public class AnnouncementActivity extends AppCompatActivity {
     public void ClickAnnouncement(View view){
         recreate();
     }
+    public void ClickNotification(View view){
+        MainActivity.redirecActivity(this,NotificationActivity.class);
+    }
+    public void ClickSeries(View view){
+        MainActivity.redirecActivity(this,SerieActivity.class);
+    }
     public void ClickMenu(View view){
         MainActivity.openDrawer(drawerLayout);
     }

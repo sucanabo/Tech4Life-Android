@@ -69,10 +69,10 @@ public class MainActivity extends AppCompatActivity {
         //redirect activity to post
         redirecActivity(this,Post_Detail.class);
     }
-//    public void ClickSeries(View view){
-//        //redirect activity to series
-//        redirecActivity(this,);
-//    }
+    public void ClickSeries(View view){
+        //redirect activity to series
+        redirecActivity(this, SerieActivity.class);
+    }
 //    public void ClickCategory(View view){
 //        //redirect activity to category
 //        redirecActivity(this,);
