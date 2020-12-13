@@ -10,36 +10,36 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class AnnouncementActivity extends AppCompatActivity {
+public class SerieActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
 
-    private ArrayList<Announcements> mAnnouncements;
-    private RecyclerView mRecyclerAnnouncements;
-    private AnnouncementsAdapter mAnnouncementsAdapter;
+    private ArrayList<Series> mSeries;
+    private RecyclerView mRecyclerSeries;
+    private SeriesAdapter mSeriesAdapter;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_announcement);
-        mRecyclerAnnouncements = findViewById(R.id.announcementRecyclerView);
-        mAnnouncements = new ArrayList<>();
-        createAnnouncementsList();
-        mAnnouncementsAdapter = new AnnouncementsAdapter(this, mAnnouncements);
-        mRecyclerAnnouncements.setAdapter(mAnnouncementsAdapter);
-        mRecyclerAnnouncements.setLayoutManager(new LinearLayoutManager(this));
+        setContentView(R.layout.activity_serie);
+        mRecyclerSeries = findViewById(R.id.serieRecyclerView);
+        mSeries = new ArrayList<>();
+        createSeriesList();
+        mSeriesAdapter = new SeriesAdapter(this, mSeries);
+        mRecyclerSeries.setAdapter(mSeriesAdapter);
+        mRecyclerSeries.setLayoutManager(new LinearLayoutManager(this));
 
         drawerLayout = findViewById(R.id.drawer_layout);
     }
 
-    public void ClickAnnouncement(View view){
+    public void ClickSeries(View view){
         recreate();
+    }
+    public void ClickAnnouncement(View view){
+        MainActivity.redirecActivity(this,AnnouncementActivity.class);
     }
     public void ClickNotification(View view){
         MainActivity.redirecActivity(this,NotificationActivity.class);
-    }
-    public void ClickSeries(View view){
-        MainActivity.redirecActivity(this,SerieActivity.class);
     }
     public void ClickMenu(View view){
         MainActivity.openDrawer(drawerLayout);
@@ -56,9 +56,9 @@ public class AnnouncementActivity extends AppCompatActivity {
     public void ClickLogout(View view){
         MainActivity.logout(this);
     }
-    private void createAnnouncementsList() {
+    private void createSeriesList() {
         for (int i = 1; i < 50; i++){
-            mAnnouncements.add(new Announcements("Announcements content example " + i, R.drawable.ic_info));
+            mSeries.add(new Series("Username" + i, "Date", "Title", "Content", R.drawable.ic_info));
         }
     }
 

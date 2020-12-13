@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/imgNotification"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="4dp"
@@ -27,7 +27,7 @@
         app:civ_border_color="#FF000000"
         app:civ_border_width="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView6"
+        app:layout_constraintStart_toEndOf="@+id/imgNotification"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView

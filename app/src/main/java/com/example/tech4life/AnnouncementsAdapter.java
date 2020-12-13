@@ -24,12 +24,12 @@ public class AnnouncementsAdapter extends RecyclerView.Adapter<AnnouncementsAdap
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         private ImageView mImage;
-        private TextView mContext;
+        private TextView mContent;
 
         public ViewHolder(@NonNull View itemView){
             super(itemView);
-            mImage = itemView.findViewById(R.id.imageView6);
-            mContext = itemView.findViewById(R.id.txtContentAnnoucement);
+            mImage = itemView.findViewById(R.id.imgNotification);
+            mContent = itemView.findViewById(R.id.txtUsernameSeries);
         }
     }
 
@@ -47,7 +47,7 @@ public class AnnouncementsAdapter extends RecyclerView.Adapter<AnnouncementsAdap
     @Override
     public void onBindViewHolder(@NonNull AnnouncementsAdapter.ViewHolder holder, int position) {
         Announcements announcements = mAnnouncements.get(position);
-        holder.mContext.setText(announcements.getContent());
+        holder.mContent.setText(announcements.getContent());
     }
 
     @Override
