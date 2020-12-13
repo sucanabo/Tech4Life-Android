@@ -1,5 +1,7 @@
 package com.example.tech4life;
 
+import android.app.Notification;
+
 public class Notifications {
 
     private String mContent;
@@ -13,6 +15,9 @@ public class Notifications {
 
     }
 
+    public Notifications(String name) {
+        this.mContent = name;
+    }
     public String getContent() {
         return mContent;
     }
@@ -36,5 +41,7 @@ public class Notifications {
     public void setImage(int mImage) {
         this.mImage = mImage;
     }
+
+
 
 }

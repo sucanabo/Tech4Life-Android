@@ -2,12 +2,24 @@ package com.example.tech4life;
 
 import android.app.Notification;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.ArrayList;
 
@@ -58,10 +70,42 @@ public class NotificationActivity extends AppCompatActivity {
     public void ClickLogout(View view){
         MainActivity.logout(this);
     }
+
     private void createNotificationsList() {
-        for (int i = 1; i < 50; i++){
-            mNotifications.add(new Notifications("Notifications content example " + i, "date" + i, R.drawable.ic_notification));
-        }
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url ="http://10.0.2.2:8000/api/get_all_noti";
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("response", response);
+
+                        JsonFactory jsonFactory = new JsonFactory();
+                        ObjectMapper objectMapper = new ObjectMapper(jsonFactory);
+
+                        try {
+                            JsonNode arrayNode = objectMapper.readTree(response).get("data");
+
+                            for (JsonNode jsonNode : arrayNode) {
+
+                                mNotifications.add(new Notifications(jsonNode.get("content").asText(), "123", R.drawable.ic_notification));
+                                Log.d("test", jsonNode.get("content").asText());
+
+                            }
+
+                        } catch (JsonProcessingException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        queue.add(stringRequest);
+
     }
 
     @Override
