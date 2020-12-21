@@ -8,6 +8,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.tech4life.adapter.AnnouncementsAdapter;
+import com.example.tech4life.recycleritems.Announcements;
+
 import java.util.ArrayList;
 
 public class AnnouncementActivity extends AppCompatActivity {
@@ -51,7 +54,7 @@ public class AnnouncementActivity extends AppCompatActivity {
         MainActivity.redirecActivity(this,MainActivity.class);
     }
     public void ClickPost(View view){
-        MainActivity.redirecActivity(this,Post_Detail.class);
+        MainActivity.redirecActivity(this, SerieActivity.Post_Detail.class);
     }
     public void ClickLogout(View view){
         MainActivity.logout(this);

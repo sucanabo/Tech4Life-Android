@@ -1,4 +1,4 @@
-package com.example.tech4life;
+package com.example.tech4life.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.tech4life.R;
+import com.example.tech4life.recycleritems.Announcements;
 
 import java.util.ArrayList;
 

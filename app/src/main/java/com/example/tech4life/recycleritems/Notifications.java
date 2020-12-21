@@ -1,4 +1,4 @@
-package com.example.tech4life;
+package com.example.tech4life.recycleritems;
 
 import android.app.Notification;
 
