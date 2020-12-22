@@ -14,7 +14,7 @@
         <activity android:name=".SerieActivity"></activity>
         <activity android:name=".NotificationActivity" />
         <activity android:name=".AnnouncementActivity" />
-        <activity android:name=".Post_Detail" />
+        <activity android:name=".SerieActivity$Post_Detail" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

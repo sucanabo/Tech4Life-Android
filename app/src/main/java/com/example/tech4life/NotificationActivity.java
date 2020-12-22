@@ -1,6 +1,5 @@
 package com.example.tech4life;
 
-import android.app.Notification;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,6 +15,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.tech4life.adapter.NotificationsAdapter;
+import com.example.tech4life.recycleritems.Notifications;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -32,17 +33,18 @@ public class NotificationActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification);
         mRecyclerNotifications = findViewById(R.id.notificationRecyclerView);
         mNotifications = new ArrayList<>();
-        createNotificationsList();
+
         mNotificationsAdapter = new NotificationsAdapter(this, mNotifications);
         mRecyclerNotifications.setAdapter(mNotificationsAdapter);
         mRecyclerNotifications.setLayoutManager(new LinearLayoutManager(this));
-
         drawerLayout = findViewById(R.id.drawer_layout);
+
+        createNotificationsList();
     }
 
     public void ClickNotification(View view){
@@ -65,16 +67,15 @@ public class NotificationActivity extends AppCompatActivity {
         MainActivity.redirecActivity(this,MainActivity.class);
     }
     public void ClickPost(View view){
-        MainActivity.redirecActivity(this,Post_Detail.class);
+        MainActivity.redirecActivity(this, SerieActivity.Post_Detail.class);
     }
     public void ClickLogout(View view){
         MainActivity.logout(this);
     }
 
-    private void createNotificationsList() {
+     private void createNotificationsList() {
         RequestQueue queue = Volley.newRequestQueue(this);
         String url ="http://10.0.2.2:8000/api/get_all_noti";
-
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
@@ -88,11 +89,9 @@ public class NotificationActivity extends AppCompatActivity {
                             JsonNode arrayNode = objectMapper.readTree(response).get("data");
 
                             for (JsonNode jsonNode : arrayNode) {
-
                                 mNotifications.add(new Notifications(jsonNode.get("content").asText(), "123", R.drawable.ic_notification));
-                                Log.d("test", jsonNode.get("content").asText());
-
                             }
+                            mNotificationsAdapter.notifyDataSetChanged();
 
                         } catch (JsonProcessingException e) {
                             e.printStackTrace();
@@ -105,7 +104,6 @@ public class NotificationActivity extends AppCompatActivity {
             }
         });
         queue.add(stringRequest);
-
     }
 
     @Override

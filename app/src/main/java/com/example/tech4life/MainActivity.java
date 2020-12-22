@@ -9,12 +9,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.LinearLayout;
-
-import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 public class MainActivity extends AppCompatActivity {
     
@@ -67,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void ClickPost(View view){
         //redirect activity to post
-        redirecActivity(this,Post_Detail.class);
+        redirecActivity(this, SerieActivity.Post_Detail.class);
     }
     public void ClickSeries(View view){
         //redirect activity to series
