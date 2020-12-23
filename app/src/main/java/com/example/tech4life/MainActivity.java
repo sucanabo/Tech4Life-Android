@@ -11,9 +11,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 public class MainActivity extends AppCompatActivity {
     
     DrawerLayout drawerLayout;
@@ -31,7 +28,10 @@ public class MainActivity extends AppCompatActivity {
         //setContentView(R.layout.post_activity_screen);
 
 //        setContentView(R.layout.user_activity_screen);
+
         //setContentView(R.layout.user_activity_screen);
+
+
         //Assign variable
         drawerLayout = findViewById(R.id.drawer_layout);
         //recycler post item
