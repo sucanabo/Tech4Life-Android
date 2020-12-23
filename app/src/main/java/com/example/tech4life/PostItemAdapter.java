@@ -18,6 +18,13 @@ import java.util.Date;
 public class PostItemAdapter extends RecyclerView.Adapter<PostItemAdapter.ViewHolder>{
     private Context mContext;
     private ArrayList<Post_Item> mPost_items;
+    private OnItemClickListener mListener;
+    public interface OnItemClickListener{
+        void onItemClick(int pos);
+    }
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener){
+        mListener = onItemClickListener;
+    }
     public PostItemAdapter(Context mContext,ArrayList<Post_Item> mPost_items){
         this.mContext = mContext;
         this.mPost_items = mPost_items;
@@ -27,7 +34,7 @@ public class PostItemAdapter extends RecyclerView.Adapter<PostItemAdapter.ViewHo
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View post_itemView = inflater.inflate(R.layout.post_item,parent,false);
-        ViewHolder viewHolder = new ViewHolder(post_itemView);
+        ViewHolder viewHolder = new ViewHolder(post_itemView,mListener);
         return viewHolder;
     }
 
@@ -49,20 +56,32 @@ public class PostItemAdapter extends RecyclerView.Adapter<PostItemAdapter.ViewHo
     public int getItemCount() {
         return mPost_items.size();
     }
-
     public  static class ViewHolder extends RecyclerView.ViewHolder{
         public TextView mTitle;
         public ImageView mAvatar;
         public TextView mAuthor;
         public ImageView mImg;
         public TextView mCreateDate;
-        public ViewHolder(View itemView){
+        public ViewHolder(View itemView, final OnItemClickListener listener){
             super(itemView);
             mTitle = itemView.findViewById(R.id.post_item_title);
             mAvatar = itemView.findViewById(R.id.post_item_avt);
             mAuthor = itemView.findViewById(R.id.post_item_author);
             mImg = itemView.findViewById(R.id.post_item_img);
             mCreateDate = itemView.findViewById(R.id.post_item_createDate);
+            itemView.setOnClickListener(new View.OnClickListener(){
+
+                @Override
+                public void onClick(View v) {
+                    if(listener != null){
+                        int pos = getAdapterPosition();
+                        if(pos != RecyclerView.NO_POSITION){
+                            listener.onItemClick(pos);
+                        }
+                    }
+                }
+            });
         }
- }
+
+    }
 }

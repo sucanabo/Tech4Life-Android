@@ -3,34 +3,50 @@ package com.example.tech4life;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
-public class MainActivity extends AppCompatActivity {
-    
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
+public class MainActivity extends AppCompatActivity{
+
+    //Inittalize variable
     DrawerLayout drawerLayout;
+    private ArrayList<Post_Item> mPostItem;
+    private RecyclerView mRecyclerPost;
+    private PostItemAdapter mPostItemAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-      setContentView(R.layout.activity_main);
-
-
-
+        setContentView(R.layout.activity_main);
+        mRecyclerPost = findViewById(R.id.post_recyclerView);
+        mPostItem = new ArrayList<>();
+        createPostItem();
+        mPostItemAdapter = new PostItemAdapter(this,mPostItem);
+        mPostItemAdapter.setOnItemClickListener(new PostItemAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int pos) {
+                Log.d("clicked","clicked" + pos);
+            }
+        });
+        mRecyclerPost.setAdapter(mPostItemAdapter);
+        mRecyclerPost.setLayoutManager(new LinearLayoutManager(this));
         //setContentView(R.layout.report_screen);
         //setContentView(R.layout.login_activity_screen);
         //setContentView(R.layout.register_activity_screen);
         //setContentView(R.layout.post_activity_screen);
-
-//        setContentView(R.layout.user_activity_screen);
-
         //setContentView(R.layout.user_activity_screen);
-
 
         //Assign variable
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -74,11 +90,11 @@ public class MainActivity extends AppCompatActivity {
     }
     public void ClickHome(View view){
         //recreate activity
-        recreate();
+
     }
     public void ClickPost(View view){
         //redirect activity to post
-        redirecActivity(this, SerieActivity.Post_Detail.class);
+        recreate();
     }
     public void ClickSeries(View view){
         //redirect activity to series
@@ -103,6 +119,9 @@ public class MainActivity extends AppCompatActivity {
     public void ClickLogout(View view){
         //close app
         logout(this);
+    }
+    public void clickBack(View view){
+        onBackPressed();
     }
     public static void logout(final Activity activity){
         //redirect activity to setting
