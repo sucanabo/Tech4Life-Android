@@ -3,48 +3,34 @@ package com.example.tech4life;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.LinearLayout;
-
-import com.google.android.material.bottomsheet.BottomSheetDialog;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
-    //Inittalize variable
+    
     DrawerLayout drawerLayout;
-    private ArrayList<Post_Item> mPostItem;
-    private RecyclerView mRecyclerPost;
-    private PostItemAdapter mPostItemAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        mRecyclerPost = findViewById(R.id.post_recyclerView);
-        mPostItem = new ArrayList<>();
-        createPostItem();
-        mPostItemAdapter = new PostItemAdapter(this,mPostItem);
-        mRecyclerPost.setAdapter(mPostItemAdapter);
-        mRecyclerPost.setLayoutManager(new LinearLayoutManager(this));
+
+      setContentView(R.layout.activity_main);
+
+
 
         //setContentView(R.layout.report_screen);
         //setContentView(R.layout.login_activity_screen);
         //setContentView(R.layout.register_activity_screen);
         //setContentView(R.layout.post_activity_screen);
+
+//        setContentView(R.layout.user_activity_screen);
+
         //setContentView(R.layout.user_activity_screen);
+
 
         //Assign variable
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -65,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
             mPostItem.add(new Post_Item("Title " + i,R.drawable.avt,"Dustin Dinh",R.drawable.img1,strDate));
         }
     }
-
     public void ClickMenu(View view){
         //Open Drawer
         openDrawer(drawerLayout);
@@ -93,24 +78,24 @@ public class MainActivity extends AppCompatActivity {
     }
     public void ClickPost(View view){
         //redirect activity to post
-        redirecActivity(this,Post_Detail.class);
+        redirecActivity(this, SerieActivity.Post_Detail.class);
     }
-//    public void ClickSeries(View view){
-//        //redirect activity to series
-//        redirecActivity(this,);
-//    }
+    public void ClickSeries(View view){
+        //redirect activity to series
+        redirecActivity(this, SerieActivity.class);
+    }
 //    public void ClickCategory(View view){
 //        //redirect activity to category
 //        redirecActivity(this,);
 //    }
-//    public void ClickNotification(View view){
-//        //redirect activity to noitification
-//        redirecActivity(this,);
-//    }
-//    public void ClickAnnouncement(View view){
-//        //redirect activity to announcement
-//        redirecActivity(this,);
-//    }
+    public void ClickNotification(View view){
+        //redirect activity to noitification
+        redirecActivity(this, NotificationActivity.class);
+    }
+    public void ClickAnnouncement(View view){
+        //redirect activity to announcement
+        redirecActivity(this, AnnouncementActivity.class);
+    }
 //    public void ClicksSetting(View view){
 //        //redirect activity to setting
 //        redirecActivity(this,);
