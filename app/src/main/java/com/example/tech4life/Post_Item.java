@@ -7,9 +7,9 @@ public class Post_Item {
     private int avatar;
     private String author;
     private  int img;
-    private Date createDate;
+    private String createDate;
 
-    public Post_Item(String title,int avatar,String author,int img,Date createDate){
+    public Post_Item(String title,int avatar,String author,int img,String createDate){
         this.setTitle(title);
         this.setAvatar(avatar);
         this.setAuthor(author);
@@ -49,11 +49,11 @@ public class Post_Item {
         this.img = img;
     }
 
-    public Date getCreateDate() {
+    public String getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Date createDate) {
+    public void setCreateDate(String createDate) {
         this.createDate = createDate;
     }
 }

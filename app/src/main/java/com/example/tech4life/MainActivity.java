@@ -54,13 +54,15 @@ public class MainActivity extends AppCompatActivity {
     private void createPostItem() {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         Date date = null;
+        String strDate;
         try {
             date = formatter.parse("12/12/2020");
+            strDate = formatter.format(date);
         } catch (ParseException e) {
             return;
         }
         for(int i =0; i<10; i++){
-            mPostItem.add(new Post_Item("Title " + i,R.drawable.avt,"Dustin Dinh",R.drawable.img1,date));
+            mPostItem.add(new Post_Item("Title " + i,R.drawable.avt,"Dustin Dinh",R.drawable.img1,strDate));
         }
     }
 
