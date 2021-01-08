@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/postItemLayout"
+
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="10dp">
+
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="300dp"
             android:layout_height="wrap_content"
@@ -18,10 +23,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:text="Arrow Function là gì ? Tại sao phải viết ArrowFunction"
+                android:text="%post_title%"
                 android:textColor="#000"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -34,6 +40,7 @@
                     android:src="@drawable/avt"
                     app:civ_border_color="#FF000000"
                     app:civ_border_width="0dp" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -44,17 +51,18 @@
                         android:id="@+id/post_item_author"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Dustin Dinh"
+                        android:text="%author%"
                         android:textColor="@color/colorPrimary" />
 
                     <TextView
                         android:id="@+id/post_item_createDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="about 1 hours ago - 2 min read" />
+                        android:text="%created_date%" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -64,7 +72,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:background="@drawable/img1" />
+                android:background="@drawable/round_layout"
+                android:scaleType="fitXY" />
         </LinearLayout>
     </LinearLayout>
 

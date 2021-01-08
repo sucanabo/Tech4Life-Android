@@ -75,7 +75,7 @@ public class NotificationActivity extends AppCompatActivity {
 
      private void createNotificationsList() {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url ="http://10.0.2.2:8000/api/get_all_noti";
+        String url ="http://10.0.2.2:8000/api/notifications";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
@@ -86,7 +86,7 @@ public class NotificationActivity extends AppCompatActivity {
                         ObjectMapper objectMapper = new ObjectMapper(jsonFactory);
 
                         try {
-                            JsonNode arrayNode = objectMapper.readTree(response).get("data");
+                            JsonNode arrayNode = objectMapper.readTree(response);
 
                             for (JsonNode jsonNode : arrayNode) {
                                 mNotifications.add(new Notifications(jsonNode.get("content").asText(), "123", R.drawable.ic_notification));
