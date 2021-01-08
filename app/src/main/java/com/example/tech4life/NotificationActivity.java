@@ -46,33 +46,34 @@ public class NotificationActivity extends AppCompatActivity {
 
         createNotificationsList();
     }
-
-    public void ClickNotification(View view){
-        recreate();
-    }
-    public void ClickSeries(View view){
-        MainActivity.redirecActivity(this, SerieActivity.class);
-    }
-
-    public void ClickAnnouncement(View view){
-        MainActivity.redirecActivity(this,AnnouncementActivity.class);
-    }
     public void ClickMenu(View view){
         MainActivity.openDrawer(drawerLayout);
     }
     public void ClickLogo(View view){
         MainActivity.closeDrawer(drawerLayout);
     }
-    public void ClickHome(View view){
+    public void ClickPost(View view){
         MainActivity.redirecActivity(this,MainActivity.class);
     }
-    public void ClickPost(View view){
-        MainActivity.redirecActivity(this, SerieActivity.Post_Detail.class);
+    public void ClickSeries(View view){
+        recreate();
+    }
+    public void ClickNotification(View view){
+        MainActivity.redirecActivity(this,NotificationActivity.class);
+    }
+    public void ClickAnnouncement(View view){
+        MainActivity.redirecActivity(this,AnnouncementActivity.class);
     }
     public void ClickLogout(View view){
+        //close app
         MainActivity.logout(this);
     }
-
+    @Override
+    protected void onPause() {
+        super.onPause();
+        //Close drawer
+        MainActivity.closeDrawer(drawerLayout);
+    }
      private void createNotificationsList() {
         RequestQueue queue = Volley.newRequestQueue(this);
         String url ="http://10.0.2.2:8000/api/get_all_noti";
@@ -104,12 +105,5 @@ public class NotificationActivity extends AppCompatActivity {
             }
         });
         queue.add(stringRequest);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        //Close drawer
-        MainActivity.closeDrawer(drawerLayout);
     }
 }

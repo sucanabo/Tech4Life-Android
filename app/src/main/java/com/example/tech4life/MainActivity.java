@@ -11,46 +11,34 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity {
     
     DrawerLayout drawerLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-      setContentView(R.layout.activity_main);
-
-
-
-        //setContentView(R.layout.report_screen);
-        //setContentView(R.layout.login_activity_screen);
-        //setContentView(R.layout.register_activity_screen);
-        //setContentView(R.layout.post_activity_screen);
-
-//        setContentView(R.layout.user_activity_screen);
-
-        //setContentView(R.layout.user_activity_screen);
-
-
+        setContentView(R.layout.activity_main);
         //Assign variable
         drawerLayout = findViewById(R.id.drawer_layout);
         //recycler post item
     }
 
-    private void createPostItem() {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        Date date = null;
-        String strDate;
-        try {
-            date = formatter.parse("12/12/2020");
-            strDate = formatter.format(date);
-        } catch (ParseException e) {
-            return;
-        }
-        for(int i =0; i<10; i++){
-            mPostItem.add(new Post_Item("Title " + i,R.drawable.avt,"Dustin Dinh",R.drawable.img1,strDate));
-        }
-    }
+//    private void createPostItem() {
+//        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+//        Date date = null;
+//        String strDate;
+//        try {
+//            date = formatter.parse("12/12/2020");
+//            strDate = formatter.format(date);
+//        } catch (ParseException e) {
+//            return;
+//        }
+//        for(int i =0; i<10; i++){
+//            mPostItem.add(new Post_Item("Title " + i,R.drawable.avt,"Dustin Dinh",R.drawable.img1,strDate));
+//        }
+//    }
     public void ClickMenu(View view){
         //Open Drawer
         openDrawer(drawerLayout);
@@ -72,32 +60,22 @@ public class MainActivity extends AppCompatActivity {
             drawerLayout.closeDrawer(GravityCompat.START);
         }
     }
-    public void ClickHome(View view){
-        //recreate activity
+    public void ClickPost(View view){
         recreate();
     }
-    public void ClickPost(View view){
-        //redirect activity to post
-        redirecActivity(this, SerieActivity.Post_Detail.class);
-    }
     public void ClickSeries(View view){
-        //redirect activity to series
-        redirecActivity(this, SerieActivity.class);
+        redirecActivity(this,SerieActivity.class);
     }
-//    public void ClickCategory(View view){
-//        //redirect activity to category
-//        redirecActivity(this,);
-//    }
+    public void ClickCategory(View view){
+        redirecActivity(this, Locale.Category.class);
+    }
     public void ClickNotification(View view){
-        //redirect activity to noitification
-        redirecActivity(this, NotificationActivity.class);
+        redirecActivity(this,NotificationActivity.class);
     }
     public void ClickAnnouncement(View view){
-        //redirect activity to announcement
-        redirecActivity(this, AnnouncementActivity.class);
+        redirecActivity(this,AnnouncementActivity.class);
     }
-//    public void ClicksSetting(View view){
-//        //redirect activity to setting
+//    public void ClickSetting(View view){
 //        redirecActivity(this,);
 //    }
     public void ClickLogout(View view){

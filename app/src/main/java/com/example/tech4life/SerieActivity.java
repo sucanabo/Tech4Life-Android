@@ -37,30 +37,33 @@ public class SerieActivity extends AppCompatActivity {
 
         drawerLayout = findViewById(R.id.drawer_layout);
     }
-
-    public void ClickSeries(View view){
-        recreate();
-    }
-    public void ClickAnnouncement(View view){
-        MainActivity.redirecActivity(this,AnnouncementActivity.class);
-    }
-    public void ClickNotification(View view){
-        MainActivity.redirecActivity(this,NotificationActivity.class);
-    }
     public void ClickMenu(View view){
         MainActivity.openDrawer(drawerLayout);
     }
     public void ClickLogo(View view){
         MainActivity.closeDrawer(drawerLayout);
     }
-    public void ClickHome(View view){
+    public void ClickPost(View view){
         MainActivity.redirecActivity(this,MainActivity.class);
     }
-    public void ClickPost(View view){
-        MainActivity.redirecActivity(this,Post_Detail.class);
+    public void ClickSeries(View view){
+        recreate();
+    }
+    public void ClickNotification(View view){
+        MainActivity.redirecActivity(this,NotificationActivity.class);
+    }
+    public void ClickAnnouncement(View view){
+        MainActivity.redirecActivity(this,AnnouncementActivity.class);
     }
     public void ClickLogout(View view){
+        //close app
         MainActivity.logout(this);
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        //Close drawer
+        MainActivity.closeDrawer(drawerLayout);
     }
     private void createSeriesList() {
         for (int i = 1; i < 50; i++){
@@ -68,12 +71,7 @@ public class SerieActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        //Close drawer
-        MainActivity.closeDrawer(drawerLayout);
-    }
+
 
     public static class Post_Detail extends AppCompatActivity {
         //Drawer variable
