@@ -13,7 +13,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -32,7 +31,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
 public class MainActivity extends AppCompatActivity {
     
     DrawerLayout drawerLayout;
@@ -42,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
 
         //setContentView(R.layout.report_screen);
@@ -53,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
         //setContentView(R.layout.user_activity_screen);
 
         //setContentView(R.layout.user_activity_screen);
-
         //Assign variable
         mPostAdapter = new PostsAdapter(this, mPost);
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -64,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
 
         //recycler post item
     }
-
     private void fetchPostsFromAPI() {
         //Log.d("API", "cccccccccccccccccccccccccccccccccc");
         String URL = "http://10.0.2.2:8000/api/post";
@@ -135,32 +130,22 @@ public class MainActivity extends AppCompatActivity {
             drawerLayout.closeDrawer(GravityCompat.START);
         }
     }
-    public void ClickHome(View view){
-        //recreate activity
+    public void ClickPost(View view){
         recreate();
     }
-    public void ClickPost(View view){
-        //redirect activity to post
-        redirecActivity(this, SerieActivity.Post_Detail.class);
-    }
     public void ClickSeries(View view){
-        //redirect activity to series
-        redirecActivity(this, SerieActivity.class);
+        redirecActivity(this,SerieActivity.class);
     }
-//    public void ClickCategory(View view){
-//        //redirect activity to category
-//        redirecActivity(this,);
-//    }
+    public void ClickCategory(View view){
+        redirecActivity(this, Locale.Category.class);
+    }
     public void ClickNotification(View view){
-        //redirect activity to noitification
-        redirecActivity(this, NotificationActivity.class);
+        redirecActivity(this,NotificationActivity.class);
     }
     public void ClickAnnouncement(View view){
-        //redirect activity to announcement
-        redirecActivity(this, AnnouncementActivity.class);
+        redirecActivity(this,AnnouncementActivity.class);
     }
-//    public void ClicksSetting(View view){
-//        //redirect activity to setting
+//    public void ClickSetting(View view){
 //        redirecActivity(this,);
 //    }
     public void ClickLogout(View view){

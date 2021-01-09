@@ -41,7 +41,7 @@ public class AnnouncementsAdapter extends RecyclerView.Adapter<AnnouncementsAdap
     @Override
     public AnnouncementsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(mContext);
-        View announcementView = inflater.inflate(R.layout.announcements_custom, parent, false);
+        View announcementView = inflater.inflate(R.layout.activity_announcement, parent, false);
         ViewHolder viewHolder = new ViewHolder(announcementView);
         return viewHolder;
 
