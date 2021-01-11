@@ -46,33 +46,10 @@ public class NotificationActivity extends AppCompatActivity {
 
         createNotificationsList();
     }
-    public void ClickMenu(View view){
-        MainActivity.openDrawer(drawerLayout);
-    }
-    public void ClickLogo(View view){
-        MainActivity.closeDrawer(drawerLayout);
-    }
-    public void ClickPost(View view){
-        MainActivity.redirecActivity(this,MainActivity.class);
-    }
-    public void ClickSeries(View view){
-        recreate();
-    }
-    public void ClickNotification(View view){
-        MainActivity.redirecActivity(this,NotificationActivity.class);
-    }
-    public void ClickAnnouncement(View view){
-        MainActivity.redirecActivity(this,AnnouncementActivity.class);
-    }
+
     public void ClickLogout(View view){
         //close app
         MainActivity.logout(this);
-    }
-    @Override
-    protected void onPause() {
-        super.onPause();
-        //Close drawer
-        MainActivity.closeDrawer(drawerLayout);
     }
      private void createNotificationsList() {
         RequestQueue queue = Volley.newRequestQueue(this);

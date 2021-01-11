@@ -2,17 +2,17 @@ package com.example.tech4life.recycleritems;
 
 public class Post {
     private String authorName;
-    private String authorImg;
+    private int authorImg;
     private String dateCreated;
-    private String img;
+    private int img;
     private String title;
 
     public Post() {
         String empty= "EMPTY";
         this.authorName = empty;
-        this.authorImg = empty;
+        this.authorImg = 0;
         this.dateCreated = empty;
-        this.img = empty;
+        this.img = 0;
         this.title = empty;
     }
 
@@ -20,7 +20,7 @@ public class Post {
         return authorName;
     }
 
-    public String getAuthorImg() {
+    public int getAuthorImg() {
         return authorImg;
     }
 
@@ -28,7 +28,7 @@ public class Post {
         return dateCreated;
     }
 
-    public String getImg() {
+    public int getImg() {
         return img;
     }
 
@@ -36,7 +36,7 @@ public class Post {
         return title;
     }
 
-    public Post(String authorName, String authorImg, String dateCreated, String img, String title) {
+    public Post(String authorName, int authorImg, String dateCreated, int img, String title) {
         this.authorName = authorName;
         this.authorImg = authorImg;
         this.dateCreated = dateCreated;

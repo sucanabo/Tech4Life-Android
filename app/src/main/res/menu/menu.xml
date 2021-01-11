@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/menu_post"
+            android:checked="true"
+            android:icon="@drawable/ic_post"
+            android:title="Post"/>
+        <item android:id="@+id/menu_series"
+            android:icon="@drawable/ic_series"
+            android:title="Series"/>
+        <item android:id="@+id/menu_tags"
+            android:icon="@drawable/ic_baseline_category_24"
+            android:title="Tags"/>
+        <item android:id="@+id/menu_annoucement"
+            android:icon="@drawable/ic_info"
+            android:title="Announcement"/>
+    </group>
+    <item android:title="">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item android:title="Setting"
+                    android:id="@+id/menu_setting"
+                    android:icon="@drawable/ic_setting"/>
+                <item android:title="Logout"
+                    android:id="@+id/menu_logout"
+                    android:icon="@drawable/ic_logout"/>
+            </group>
+        </menu>
+    </item>
+</menu>

@@ -35,33 +35,9 @@ public class AnnouncementActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawer_layout);
     }
 
-    public void ClickMenu(View view){
-        MainActivity.openDrawer(drawerLayout);
-    }
-    public void ClickLogo(View view){
-        MainActivity.closeDrawer(drawerLayout);
-    }
-    public void ClickPost(View view){
-        MainActivity.redirecActivity(this,MainActivity.class);
-    }
-    public void ClickSeries(View view){
-        MainActivity.redirecActivity(this,SerieActivity.class);
-    }
-    public void ClickNotification(View view){
-        MainActivity.redirecActivity(this,NotificationActivity.class);
-    }
-    public void ClickAnnouncement(View view){
-        recreate();
-    }
     public void ClickLogout(View view){
         //close app
         MainActivity.logout(this);
-    }
-    @Override
-    protected void onPause() {
-        super.onPause();
-        //Close drawer
-        MainActivity.closeDrawer(drawerLayout);
     }
     private void createAnnouncementsList() {
         for (int i = 1; i < 50; i++){

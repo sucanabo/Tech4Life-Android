@@ -10,8 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <include
-            layout="@layout/main_toolbar"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/serieRecyclerView"
@@ -22,12 +20,5 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </LinearLayout>
-    <RelativeLayout
-        android:layout_width="300dp"
-        android:layout_height="match_parent"
-        android:gravity="start"
-        android:background="@android:color/white">
-        <include layout="@layout/main_nav_drawer"/>
-    </RelativeLayout>
 
 </androidx.drawerlayout.widget.DrawerLayout>

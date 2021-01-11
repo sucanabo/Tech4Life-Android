@@ -37,33 +37,10 @@ public class SerieActivity extends AppCompatActivity {
 
         drawerLayout = findViewById(R.id.drawer_layout);
     }
-    public void ClickMenu(View view){
-        MainActivity.openDrawer(drawerLayout);
-    }
-    public void ClickLogo(View view){
-        MainActivity.closeDrawer(drawerLayout);
-    }
-    public void ClickPost(View view){
-        MainActivity.redirecActivity(this,MainActivity.class);
-    }
-    public void ClickSeries(View view){
-        recreate();
-    }
-    public void ClickNotification(View view){
-        MainActivity.redirecActivity(this,NotificationActivity.class);
-    }
-    public void ClickAnnouncement(View view){
-        MainActivity.redirecActivity(this,AnnouncementActivity.class);
-    }
+
     public void ClickLogout(View view){
         //close app
         MainActivity.logout(this);
-    }
-    @Override
-    protected void onPause() {
-        super.onPause();
-        //Close drawer
-        MainActivity.closeDrawer(drawerLayout);
     }
     private void createSeriesList() {
         for (int i = 1; i < 50; i++){
@@ -85,18 +62,6 @@ public class SerieActivity extends AppCompatActivity {
 
         }
         //Method
-        public void ClickMenu(View view){
-            MainActivity.openDrawer(drawerLayout);
-        }
-        public void ClickLogo(View view){
-            MainActivity.closeDrawer(drawerLayout);
-        }
-        public void ClickHome(View view){
-            MainActivity.redirecActivity(this,MainActivity.class);
-        }
-        public void ClickPost(View view){
-            recreate();
-        }
         public void ClickLogout(View view){
             MainActivity.logout(this);
         }
@@ -106,13 +71,6 @@ public class SerieActivity extends AppCompatActivity {
                     .inflate(R.layout.bottom_sheet_post,(LinearLayout)findViewById(R.id.bottom_sheet_container));
             bottomSheetDialog.setContentView(bottomSheetView);
             bottomSheetDialog.show();
-        }
-
-        @Override
-        protected void onPause() {
-            super.onPause();
-            //Close drawer
-            MainActivity.closeDrawer(drawerLayout);
         }
     }
 }

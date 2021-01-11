@@ -1,8 +1,14 @@
 package com.example.tech4life;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,6 +18,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -26,128 +33,81 @@ import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.android.material.navigation.NavigationView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
-    
+
     DrawerLayout drawerLayout;
-    ArrayList<Post> mPost = new ArrayList<Post>();
-    RecyclerView mRecyclerPost;
-    PostsAdapter mPostAdapter;
+    ActionBarDrawerToggle toggle;
+    Toolbar toolbar;
+    NavigationView navigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        //setContentView(R.layout.report_screen);
-        //setContentView(R.layout.login_activity_screen);
-        //setContentView(R.layout.register_activity_screen);
-        //setContentView(R.layout.post_activity_screen);
-
-        //setContentView(R.layout.user_activity_screen);
-
-        //setContentView(R.layout.user_activity_screen);
-        //Assign variable
-        mPostAdapter = new PostsAdapter(this, mPost);
+        //Drawer
         drawerLayout = findViewById(R.id.drawer_layout);
-        mRecyclerPost = findViewById(R.id.post_recyclerView);
-        mRecyclerPost.setAdapter(mPostAdapter);
-        mRecyclerPost.setLayoutManager(new LinearLayoutManager(this));
-        fetchPostsFromAPI();
-
-        //recycler post item
-    }
-    private void fetchPostsFromAPI() {
-        //Log.d("API", "cccccccccccccccccccccccccccccccccc");
-        String URL = "http://10.0.2.2:8000/api/post";
-        RequestQueue queue = Volley.newRequestQueue(this);
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-
-                        JsonFactory jsonFactory = new JsonFactory();
-                        ObjectMapper objectMapper = new ObjectMapper(jsonFactory);
-
-                        try {
-                            JsonNode arrayNode = objectMapper.readTree(response);
-
-                            for (JsonNode jsonNode : arrayNode) {
-                                mPost.add(new Post(
-                                        jsonNode.get("display_name").asText(),
-                                        jsonNode.get("avatar").asText(),
-                                        jsonNode.get("created_at").asText(),
-                                        jsonNode.get("image_title").asText(),
-                                        jsonNode.get("title").asText()
-                                ));
-                            }
-                            mPostAdapter.notifyDataSetChanged();
-
-                        } catch (JsonProcessingException e) {
-                            e.printStackTrace();
-                        }
-
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        error.printStackTrace();
-                 }
+        toolbar = findViewById(R.id.toolBar);
+        setSupportActionBar(toolbar);
+        toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+        navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id=item.getItemId();
+                Fragment fragment=null;
+                switch (id)
+                {
+                    case R.id.menu_post:
+                        fragment=new PostFragment();
+                        loadFragment(fragment);
+                        break;
+                    case R.id.menu_series:
+                        fragment=new SeriesFragment();
+                        loadFragment(fragment);
+                        break;
+                    case R.id.menu_tags:
+                        fragment=new TagsFragment();
+                        loadFragment(fragment);
+                        break;
+                    case R.id.menu_annoucement:
+                        fragment=new AnnoucementFragment();
+                        loadFragment(fragment);
+                        break;
+                    case R.id.menu_setting:
+                        fragment=new SettingFragment();
+                        loadFragment(fragment);
+                        break;
+                    default:
+                        return true;
+                }
+                return true;
+            }
         });
-        queue.add(stringRequest);
-
-        /*SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        Date date = null;
-        String strDate;
-        try {
-            date = formatter.parse("12/12/2020");
-            strDate = formatter.format(date);
-        } catch (ParseException e) {
-            return;
-        }*/
+        //Assign variable
+//        mPostAdapter = new PostsAdapter(this, mPost);
+//        mRecyclerPost = findViewById(R.id.post_recyclerView);
+//        mRecyclerPost.setAdapter(mPostAdapter);
+//        mRecyclerPost.setLayoutManager(new LinearLayoutManager(this));
+//        fetchPostsFromAPI();
+        loadFragment( new PostFragment());
     }
-    public void ClickMenu(View view){
-        //Open Drawer
-        openDrawer(drawerLayout);
+    //load Fragment
+    private void loadFragment(Fragment fragment) {
+        FragmentManager fragmentManager=getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frame,fragment).commit();
+        drawerLayout.closeDrawer(GravityCompat.START);
+        fragmentTransaction.addToBackStack(null);
     }
-    public static void openDrawer(DrawerLayout drawerLayout){
-        //Open drawer layout
-        drawerLayout.openDrawer(GravityCompat.START);
-    }
-    public void ClickLogo(View view){
-        //Close drawer
-        closeDrawer(drawerLayout);
-    }
-    public static void closeDrawer(DrawerLayout drawerLayout){
-        //Close drawer layout
-        //Check condition
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)){
-            //When drawer is open
-            //Close drawer
-            drawerLayout.closeDrawer(GravityCompat.START);
-        }
-    }
-    public void ClickPost(View view){
-        recreate();
-    }
-    public void ClickSeries(View view){
-        redirecActivity(this,SerieActivity.class);
-    }
-    public void ClickCategory(View view){
-        redirecActivity(this, Locale.Category.class);
-    }
-    public void ClickNotification(View view){
-        redirecActivity(this,NotificationActivity.class);
-    }
-    public void ClickAnnouncement(View view){
-        redirecActivity(this,AnnouncementActivity.class);
-    }
-//    public void ClickSetting(View view){
-//        redirecActivity(this,);
-//    }
     public void ClickLogout(View view){
         //close app
         logout(this);
@@ -179,19 +139,5 @@ public class MainActivity extends AppCompatActivity {
         });
         //Show dialog
         builder.show();
-    }
-
-    public static void redirecActivity(Activity activity, Class aClass) {
-        //Initialize intent
-        Intent intent = new Intent(activity,aClass);
-        //Set flag
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        activity.startActivity(intent);
-    }
-    @Override
-    protected void onPause() {
-        super.onPause();
-        //Close drawer
-        closeDrawer(drawerLayout);
     }
 }

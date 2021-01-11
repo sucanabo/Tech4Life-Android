@@ -417,11 +417,4 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
-    <RelativeLayout
-        android:layout_width="300dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="@android:color/white">
-        <include layout="@layout/main_nav_drawer"/>
-    </RelativeLayout>
 </androidx.drawerlayout.widget.DrawerLayout>
