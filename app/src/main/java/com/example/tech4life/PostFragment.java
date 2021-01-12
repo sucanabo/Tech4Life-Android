@@ -42,6 +42,7 @@ public class PostFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        mPostAdapter = new PostsAdapter(getContext(), mPost);
         //Assign variable
         View view = inflater.inflate(R.layout.fragment_post,container,false);
 
@@ -50,65 +51,60 @@ public class PostFragment extends Fragment {
         mRecyclerPost.setHasFixedSize(true);
         mRecyclerPost.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerPost.setAdapter(mPostAdapter);
-        mRecyclerPost.setAdapter(new PostsAdapter(getContext(),mPost));
-        //fetchPostsFromAPI();
-        getData();
+        mRecyclerPost.setAdapter(mPostAdapter);
+        fetchPostsFromAPI();
+
         // Inflate the layout for this fragment
         return view;
     }
-    private void getData(){
 
-        for(int i = 0; i < 5; i++){
-            mPost.add(new Post("Author " + i, R.drawable.avt,"2020-10-1",R.drawable.img1,"Title "+i));
-        }
+    private void fetchPostsFromAPI() {
+        //Log.d("API", "cccccccccccccccccccccccccccccccccc");
+        String URL = "http://10.0.2.2:8000/api/post";
+        RequestQueue queue = Volley.newRequestQueue(getContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        JsonFactory jsonFactory = new JsonFactory();
+                        ObjectMapper objectMapper = new ObjectMapper(jsonFactory);
+
+                        try {
+                            JsonNode arrayNode = objectMapper.readTree(response);
+
+                            for (JsonNode jsonNode : arrayNode) {
+                                mPost.add(new Post(
+                                        jsonNode.get("display_name").asText(),
+                                        jsonNode.get("avatar").asText(),
+                                        jsonNode.get("created_at").asText(),
+                                        jsonNode.get("image_title").asText(),
+                                        jsonNode.get("title").asText()
+                                ));
+                            }
+                            mPostAdapter.notifyDataSetChanged();
+
+                        } catch (JsonProcessingException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+        queue.add(stringRequest);
+
+        /*SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = null;
+        String strDate;
+        try {
+            date = formatter.parse("12/12/2020");
+            strDate = formatter.format(date);
+        } catch (ParseException e) {
+            return;
+        }*/
     }
-//    private void fetchPostsFromAPI() {
-//        //Log.d("API", "cccccccccccccccccccccccccccccccccc");
-//        String URL = "http://10.0.2.2:8000/api/post";
-//        RequestQueue queue = Volley.newRequestQueue(getContext());
-//        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL,
-//                new Response.Listener<String>() {
-//                    @Override
-//                    public void onResponse(String response) {
-//
-//                        JsonFactory jsonFactory = new JsonFactory();
-//                        ObjectMapper objectMapper = new ObjectMapper(jsonFactory);
-//
-//                        try {
-//                            JsonNode arrayNode = objectMapper.readTree(response);
-//
-//                            for (JsonNode jsonNode : arrayNode) {
-//                                mPost.add(new Post(
-//                                        jsonNode.get("display_name").asText(),
-//                                        jsonNode.get("avatar").asText(),
-//                                        jsonNode.get("created_at").asText(),
-//                                        jsonNode.get("image_title").asText(),
-//                                        jsonNode.get("title").asText()
-//                                ));
-//                            }
-//                            mPostAdapter.notifyDataSetChanged();
-//
-//                        } catch (JsonProcessingException e) {
-//                            e.printStackTrace();
-//                        }
-//
-//                    }
-//                }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                error.printStackTrace();
-//            }
-//        });
-//        queue.add(stringRequest);
-//
-//        /*SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-//        Date date = null;
-//        String strDate;
-//        try {
-//            date = formatter.parse("12/12/2020");
-//            strDate = formatter.format(date);
-//        } catch (ParseException e) {
-//            return;
-//        }*/
-//    }
 }
