@@ -1,15 +1,16 @@
 package com.example.tech4life;
 
-import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -17,10 +18,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
-import com.example.tech4life.adapter.SeriesAdapter;
-
-import com.example.tech4life.recycleritems.Series;
+import com.example.tech4life.adapter.PostsAdapter;
+import com.example.tech4life.recycleritems.Post;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -28,42 +27,39 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.ArrayList;
 
-
-public class SeriesFragment extends Fragment {
-    RecyclerView mRecyclerSeries;
-    SeriesAdapter mSeriesAdapter;
-    ArrayList<Series> mSeries = new ArrayList<Series>();
-    public SeriesFragment(){
-
-    }
+public class SearchActivity extends AppCompatActivity {
+    private EditText searchInput;
+    RecyclerView mRecyclerPost;
+    PostsAdapter mPostAdapter;
+    ArrayList<Post> mPost = new ArrayList<Post>();
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        mSeriesAdapter = new SeriesAdapter(getContext(), mSeries);
+        setContentView(R.layout.activity_search);
         //Assign variable
-        View view = inflater.inflate(R.layout.fragment_series,container,false);
-
-
-        mRecyclerSeries = (RecyclerView) view.findViewById(R.id.series_recycler_view);
-       mRecyclerSeries.setHasFixedSize(true);
-        mRecyclerSeries.setLayoutManager(new LinearLayoutManager(getContext()));
-        mRecyclerSeries.setAdapter(mSeriesAdapter);
-        mRecyclerSeries.setAdapter(mSeriesAdapter);
-        fetchSeriesFromAPI();
-
-        // Inflate the layout for this fragment
-        return view;
+        searchInput = (EditText) findViewById(R.id.search_input);
+        searchInput.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                        (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    // Perform action on key press
+                    Toast.makeText(SearchActivity.this, searchInput.getText(), Toast.LENGTH_SHORT).show();
+                    fetchPostsFromAPI();
+                    return true;
+                }
+                return false;
+            }
+        });
+        mPostAdapter = new PostsAdapter(this,mPost);
+        mRecyclerPost = findViewById(R.id.search_post_recyclerView);
+        mRecyclerPost.setAdapter(mPostAdapter);
+        mRecyclerPost.setLayoutManager(new LinearLayoutManager(this));
     }
-
-    private void fetchSeriesFromAPI() {
+        private void fetchPostsFromAPI() {
         //Log.d("API", "cccccccccccccccccccccccccccccccccc");
-        String URL = "http://10.0.2.2:8000/api/series";
-        RequestQueue queue = Volley.newRequestQueue(getContext());
+        String URL = "http://10.0.2.2:8000/api/searchpost/"+searchInput.getText().toString();
+        RequestQueue queue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL,
                 new Response.Listener<String>() {
                     @Override
@@ -76,15 +72,15 @@ public class SeriesFragment extends Fragment {
                             JsonNode arrayNode = objectMapper.readTree(response);
 
                             for (JsonNode jsonNode : arrayNode) {
-                                mSeries.add(new Series(
-                                        jsonNode.get("username").asText(),
+                                mPost.add(new Post(
+                                        jsonNode.get("display_name").asText(),
+                                        jsonNode.get("avatar").asText(),
                                         jsonNode.get("created_at").asText(),
-                                        jsonNode.get("title").asText(),
-                                        jsonNode.get("description").asText(),
-                                        jsonNode.get("avatar").asText()
+                                        jsonNode.get("image_title").asText(),
+                                        jsonNode.get("title").asText()
                                 ));
                             }
-                            mSeriesAdapter.notifyDataSetChanged();
+                            mPostAdapter.notifyDataSetChanged();
 
                         } catch (JsonProcessingException e) {
                             e.printStackTrace();

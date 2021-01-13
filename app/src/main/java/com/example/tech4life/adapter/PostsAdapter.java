@@ -10,11 +10,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.example.tech4life.PostDetailActivity;
 import com.example.tech4life.R;
-import com.example.tech4life.recycleritems.Notifications;
 import com.example.tech4life.recycleritems.Post;
 import com.squareup.picasso.Picasso;
 
@@ -90,11 +88,11 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            ivAuthorImg = itemView.findViewById(R.id.post_item_avt);
-            tvAuthorName = itemView.findViewById(R.id.post_item_author);
+            ivAuthorImg = itemView.findViewById(R.id.series_item_avt);
+            tvAuthorName = itemView.findViewById(R.id.txtUsernameSeries);
 
-            tvPostDate = itemView.findViewById(R.id.post_item_createDate);
-            tvPostTitle = itemView.findViewById(R.id.post_item_title);
+            tvPostDate = itemView.findViewById(R.id.txtDateSeries);
+            tvPostTitle = itemView.findViewById(R.id.txtTitleSeries);
             ivPostImg = itemView.findViewById(R.id.post_item_img);
 
         }

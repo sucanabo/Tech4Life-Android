@@ -1,5 +1,6 @@
 package com.example.tech4life;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -44,25 +45,21 @@ public class PostFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        mPostAdapter = new PostsAdapter(getContext(), mPost);
         //Assign variable
         View view = inflater.inflate(R.layout.fragment_post,container,false);
 
-        mPostAdapter = new PostsAdapter(getContext(), mPost);
+
+        mPostAdapter = new PostsAdapter(getContext(),mPost);
         mRecyclerPost = view.findViewById(R.id.post_recyclerView);
         mRecyclerPost.setHasFixedSize(true);
         mRecyclerPost.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerPost.setAdapter(mPostAdapter);
+        mRecyclerPost.setAdapter(mPostAdapter);
         fetchPostsFromAPI();
-        //getData();
+
         // Inflate the layout for this fragment
         return view;
-    }
-    public void setPosts(ArrayList<Post> posts) {
-        mPost.addAll(posts);
-        mPostAdapter.notifyDataSetChanged();
-    }
-    public ArrayList<Post> getPosts() {
-        return mPost;
     }
 
     private void fetchPostsFromAPI() {
@@ -73,12 +70,9 @@ public class PostFragment extends Fragment {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        //Log.d("API", response);
-                        //String responseJson = response.replaceAll("\"\"", "\"");
-                        //String responeJsonValid = StringUtils.replace(responseJson, "\"\"", "\"\\\"");
+
                         JsonFactory jsonFactory = new JsonFactory();
                         ObjectMapper objectMapper = new ObjectMapper(jsonFactory);
-                        objectMapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
 
                         try {
                             JsonNode arrayNode = objectMapper.readTree(response);
@@ -89,21 +83,14 @@ public class PostFragment extends Fragment {
                                         jsonNode.get("avatar").asText(),
                                         jsonNode.get("created_at").asText(),
                                         jsonNode.get("image_title").asText(),
-                                        jsonNode.get("title").asText(),
-                                        jsonNode.get("content").asText(),
-                                        jsonNode.get("view").asText(),
-                                        jsonNode.get("vote").asText(),
-                                        jsonNode.get("comment").asText(),
-                                        jsonNode.get("clipped").asText(),
-                                        jsonNode.get("username").asText()
+                                        jsonNode.get("title").asText()
                                 ));
                             }
-
+                            mPostAdapter.notifyDataSetChanged();
 
                         } catch (JsonProcessingException e) {
                             e.printStackTrace();
                         }
-                        mPostAdapter.notifyDataSetChanged();
 
                     }
                 }, new Response.ErrorListener() {
@@ -113,7 +100,6 @@ public class PostFragment extends Fragment {
             }
         });
         queue.add(stringRequest);
-
         /*SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         Date date = null;
         String strDate;

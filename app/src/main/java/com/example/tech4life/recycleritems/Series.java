@@ -6,14 +6,23 @@ public class Series {
     private String mDate;
     private String mTitle;
     private String mContent;
-    private int mImage;
+    private String mImg;
 
-    public Series(String mUsername, String mDate, String mTitle, String mContent, int mImage) {
-        this.mContent = mUsername;
-        this.mContent = mDate;
-        this.mContent = mTitle;
-        this.mContent = mContent;
-        this.mImage = mImage;
+    public Series() {
+        String empty= "EMPTY";
+        this.mUsername = empty;
+        this.mDate = empty;
+        this.mTitle = empty;
+        this.mContent = empty;
+        this.mImg = empty;
+    }
+
+    public String getmImg() {
+        return mImg;
+    }
+
+    public void setmImg(String mImg) {
+        this.mImg = mImg;
     }
 
     public String getmUsername() {
@@ -48,12 +57,13 @@ public class Series {
         this.mContent = mContent;
     }
 
-    public int getImage() {
-        return mImage;
-    }
 
-    public void setImage(int mImage) {
-        this.mImage = mImage;
+    public Series(String mUsername, String mDate, String mTitle, String mContent, String mImg) {
+        this.mUsername = mUsername;
+        this.mDate = mDate;
+        this.mTitle = mTitle;
+        this.mContent = mContent;
+        this.mImg = mImg;
     }
 
 }

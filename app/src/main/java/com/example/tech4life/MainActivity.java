@@ -97,12 +97,6 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-        //Assign variable
-//        mPostAdapter = new PostsAdapter(this, mPost);
-//        mRecyclerPost = findViewById(R.id.post_recyclerView);
-//        mRecyclerPost.setAdapter(mPostAdapter);
-//        mRecyclerPost.setLayoutManager(new LinearLayoutManager(this));
-//        fetchPostsFromAPI();
         loadFragment( new PostFragment());
     }
     //load Fragment
@@ -112,6 +106,10 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.frame,fragment).commit();
         drawerLayout.closeDrawer(GravityCompat.START);
         fragmentTransaction.addToBackStack(null);
+    }
+    public void ClickSearch(View view){
+        Intent intent= new Intent(this,SearchActivity.class);
+        startActivity(intent);
     }
     public void ClickLogout(View view){
         //close app

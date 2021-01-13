@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imgUserAvt"
+            android:id="@+id/user_avt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/avt"
@@ -63,7 +63,7 @@
         app:layout_constraintTop_toBottomOf="@+id/user_displayname" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/user_post_btn"
         android:layout_width="69dp"
         android:layout_height="64dp"
         android:layout_marginStart="74dp"
@@ -73,22 +73,22 @@
         app:srcCompat="@mipmap/ic_posts_foreground" />
 
     <ImageButton
-        android:id="@+id/imageButton4"
+        android:id="@+id/user_series_btn"
         android:layout_width="69dp"
         android:layout_height="64dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="20dp"
-        app:layout_constraintStart_toEndOf="@+id/imageButton"
+        app:layout_constraintStart_toEndOf="@+id/user_post_btn"
         app:layout_constraintTop_toBottomOf="@+id/user_email"
         app:srcCompat="@mipmap/ic_series_foreground" />
 
     <ImageButton
-        android:id="@+id/imageButton5"
+        android:id="@+id/user_tag_btn5"
         android:layout_width="69dp"
         android:layout_height="64dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="20dp"
-        app:layout_constraintStart_toEndOf="@+id/imageButton4"
+        app:layout_constraintStart_toEndOf="@+id/user_series_btn"
         app:layout_constraintTop_toBottomOf="@+id/user_email"
         app:srcCompat="@mipmap/ic_categories_foreground" />
 
@@ -99,7 +99,7 @@
         android:layout_marginStart="88dp"
         android:layout_marginTop="36dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton"
+        app:layout_constraintTop_toBottomOf="@+id/user_post_btn"
         app:srcCompat="@mipmap/ic_view_user_foreground" />
 
     <ImageView
@@ -151,7 +151,7 @@
         app:srcCompat="@mipmap/ic_followed_user_foreground" />
 
     <TextView
-        android:id="@+id/textView39"
+        android:id="@+id/user_total_view"
         android:layout_width="wrap_content"
         android:layout_height="37dp"
         android:layout_marginStart="8dp"
@@ -161,10 +161,10 @@
         android:textColor="#9B9B9B"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/imageView7"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton4" />
+        app:layout_constraintTop_toBottomOf="@+id/user_series_btn" />
 
     <TextView
-        android:id="@+id/textView43"
+        android:id="@+id/user_toatal_post"
         android:layout_width="wrap_content"
         android:layout_height="37dp"
         android:layout_marginStart="8dp"
@@ -173,10 +173,10 @@
         android:textColor="#9B9B9B"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/imageView8"
-        app:layout_constraintTop_toBottomOf="@+id/textView39" />
+        app:layout_constraintTop_toBottomOf="@+id/user_total_view" />
 
     <TextView
-        android:id="@+id/textView44"
+        android:id="@+id/user_total_upvote"
         android:layout_width="wrap_content"
         android:layout_height="37dp"
         android:layout_marginStart="8dp"
@@ -185,10 +185,10 @@
         android:textColor="#9B9B9B"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/imageView9"
-        app:layout_constraintTop_toBottomOf="@+id/textView43" />
+        app:layout_constraintTop_toBottomOf="@+id/user_toatal_post" />
 
     <TextView
-        android:id="@+id/textView45"
+        android:id="@+id/user_total_downvote"
         android:layout_width="wrap_content"
         android:layout_height="37dp"
         android:layout_marginStart="8dp"
@@ -197,10 +197,10 @@
         android:textColor="#9B9B9B"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/imageView10"
-        app:layout_constraintTop_toBottomOf="@+id/textView44" />
+        app:layout_constraintTop_toBottomOf="@+id/user_total_upvote" />
 
     <TextView
-        android:id="@+id/textView46"
+        android:id="@+id/user_total_comment"
         android:layout_width="wrap_content"
         android:layout_height="37dp"
         android:layout_marginStart="8dp"
@@ -209,10 +209,10 @@
         android:textColor="#9B9B9B"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/imageView11"
-        app:layout_constraintTop_toBottomOf="@+id/textView45" />
+        app:layout_constraintTop_toBottomOf="@+id/user_total_downvote" />
 
     <TextView
-        android:id="@+id/textView47"
+        android:id="@+id/user_total_following"
         android:layout_width="wrap_content"
         android:layout_height="37dp"
         android:layout_marginStart="8dp"
@@ -221,10 +221,10 @@
         android:textColor="#9B9B9B"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/imageView12"
-        app:layout_constraintTop_toBottomOf="@+id/textView46" />
+        app:layout_constraintTop_toBottomOf="@+id/user_total_comment" />
 
     <TextView
-        android:id="@+id/textView48"
+        android:id="@+id/user_total_follower"
         android:layout_width="wrap_content"
         android:layout_height="37dp"
         android:layout_marginStart="8dp"
@@ -233,6 +233,6 @@
         android:textColor="#9B9B9B"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/imageView13"
-        app:layout_constraintTop_toBottomOf="@+id/textView47" />
+        app:layout_constraintTop_toBottomOf="@+id/user_total_following" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
