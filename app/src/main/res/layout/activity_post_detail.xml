@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <include
-            layout="@layout/top_navbar_avt"/>
+            layout="@layout/activity_top_navbar_detail"/>
         <ScrollView
             android:id="@+id/scrollView3"
             android:layout_width="match_parent"
@@ -57,29 +57,29 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.45"
-                        app:layout_constraintStart_toStartOf="@+id/profile_image"
+                        app:layout_constraintStart_toStartOf="@+id/post_author_img"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/textView18"
+                        android:id="@+id/post_author_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:text="Dustin Dinh"
                         android:textColor="#5488C7"
                         android:textSize="10sp"
-                        app:layout_constraintStart_toEndOf="@+id/profile_image"
+                        app:layout_constraintStart_toEndOf="@+id/post_author_img"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/textView19"
+                        android:id="@+id/txt_post_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="6 hours ago - 6 mins read"
                         android:textSize="10sp"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="@+id/textView18"
-                        app:layout_constraintTop_toBottomOf="@+id/textView18" />
+                        app:layout_constraintStart_toStartOf="@+id/post_author_name"
+                        app:layout_constraintTop_toBottomOf="@+id/post_author_name" />
 
                     <ImageView
                         android:id="@+id/ico_view"
@@ -148,7 +148,7 @@
                         app:layout_constraintTop_toTopOf="@+id/ico_share" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/profile_image"
+                        android:id="@+id/post_author_img"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:src="@drawable/avt"
@@ -210,110 +210,10 @@
                     android:layout_marginBottom="10dp"
                     android:orientation="vertical">
 
-                    <TextView
+                    <WebView
+                        android:id="@+id/post.content"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp"
-                        android:text="1. Giới thiệu"
-                        android:textColor="#000000"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/textView24"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Arrow functions là một trong những tính năng mới rất hay của ES6. Việc sử dụng đúng cách arrow function giúp code trở nên ngắn gọn và dễ hiểu hơn. Vì vậy, trong bài viết này mình sẽ giúp bạn hiểu rõ hơn về arrow function trong JavaScript. " />
-
-                    <ImageView
-                        android:id="@+id/imageView5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="175dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView24"
-                        app:srcCompat="@drawable/img1" />
-
-                    <TextView
-                        android:id="@+id/textView25"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:text="Arrow function được định nghĩa là: Arrow functions – also called “fat arrow” functions, from CoffeeScript (a transcompiled language) — are a more concise syntax for writing function expressions." />
-
-                    <TextView
-                        android:id="@+id/textView27"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp"
-                        android:text="2. Cách dùng"
-                        android:textColor="#000000"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/textView28"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp"
-                        android:text="Cú pháp cơ bản với nhiều tham số"
-                        android:textColor="#000000"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/textView29"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp"
-                        android:background="#F1F2F3"
-                        android:text="// ES5 var multiTestEs5 = function(a, b) {   return a * b; };  // ES6 const multiTestEs6 = (a, b) => { return a * b };" />
-
-                    <TextView
-                        android:id="@+id/textView30"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp"
-                        android:text="Cú pháp cơ bản với nhiều tham số"
-                        android:textColor="#000000"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/textView31"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp"
-                        android:background="#F1F2F3"
-                        android:text="//ES5 var phraseSplitterEs5 = function phraseSplitter(phrase) {   return phrase.split(' '); };  //ES6 const phraseSplitterEs6 = phrase => phrase.split(&quot; &quot;);  console.log(phraseSplitterEs6(&quot;Framgia AwesomeTrip&quot;));  // [&quot;Framgia&quot;, &quot;AwesomeTrip&quot;]" />
-
-                    <TextView
-                        android:id="@+id/textView35"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Arrow function được định nghĩa là: Arrow functions – also called “fat arrow” functions, from CoffeeScript (a transcompiled language) — are a more concise syntax for writing function expressions." />
-
-                    <TextView
-                        android:id="@+id/textView33"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp"
-                        android:text="Không có tham số"
-                        android:textColor="#000000"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/textView34"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp"
-                        android:background="#F1F2F3"
-                        android:text="// ES5 var docLogEs5 = function docLog() {     console.log(document); };  // ES6 var docLogEs6 = () => { console.log(document); }; docLogEs6();" />
-
+                        android:layout_height="match_parent" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -344,13 +244,13 @@
                 android:id="@+id/imageView"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                app:layout_constraintEnd_toEndOf="@+id/textView17"
-                app:layout_constraintStart_toStartOf="@+id/textView17"
+                app:layout_constraintEnd_toEndOf="@+id/txt_vote"
+                app:layout_constraintStart_toStartOf="@+id/txt_vote"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_upvote_foreground" />
 
             <TextView
-                android:id="@+id/textView17"
+                android:id="@+id/txt_vote"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_marginStart="95dp"
@@ -375,7 +275,7 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="20dp"
                 android:text="+55"
-                app:layout_constraintStart_toEndOf="@+id/textView17"
+                app:layout_constraintStart_toEndOf="@+id/txt_vote"
                 app:layout_constraintTop_toTopOf="@+id/imageView2" />
 
             <ImageView

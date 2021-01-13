@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import com.example.tech4life.adapter.PostsAdapter;
 import com.example.tech4life.recycleritems.Announcements;
 import com.example.tech4life.recycleritems.Post;
 import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -45,70 +47,81 @@ public class PostFragment extends Fragment {
         //Assign variable
         View view = inflater.inflate(R.layout.fragment_post,container,false);
 
-
+        mPostAdapter = new PostsAdapter(getContext(), mPost);
         mRecyclerPost = view.findViewById(R.id.post_recyclerView);
         mRecyclerPost.setHasFixedSize(true);
         mRecyclerPost.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerPost.setAdapter(mPostAdapter);
-        mRecyclerPost.setAdapter(new PostsAdapter(getContext(),mPost));
-        //fetchPostsFromAPI();
-        getData();
+        fetchPostsFromAPI();
+        //getData();
         // Inflate the layout for this fragment
         return view;
     }
-    private void getData(){
-
-        for(int i = 0; i < 5; i++){
-            mPost.add(new Post("Author " + i, R.drawable.avt,"2020-10-1",R.drawable.img1,"Title "+i));
-        }
+    public void setPosts(ArrayList<Post> posts) {
+        mPost.addAll(posts);
+        mPostAdapter.notifyDataSetChanged();
     }
-//    private void fetchPostsFromAPI() {
-//        //Log.d("API", "cccccccccccccccccccccccccccccccccc");
-//        String URL = "http://10.0.2.2:8000/api/post";
-//        RequestQueue queue = Volley.newRequestQueue(getContext());
-//        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL,
-//                new Response.Listener<String>() {
-//                    @Override
-//                    public void onResponse(String response) {
-//
-//                        JsonFactory jsonFactory = new JsonFactory();
-//                        ObjectMapper objectMapper = new ObjectMapper(jsonFactory);
-//
-//                        try {
-//                            JsonNode arrayNode = objectMapper.readTree(response);
-//
-//                            for (JsonNode jsonNode : arrayNode) {
-//                                mPost.add(new Post(
-//                                        jsonNode.get("display_name").asText(),
-//                                        jsonNode.get("avatar").asText(),
-//                                        jsonNode.get("created_at").asText(),
-//                                        jsonNode.get("image_title").asText(),
-//                                        jsonNode.get("title").asText()
-//                                ));
-//                            }
-//                            mPostAdapter.notifyDataSetChanged();
-//
-//                        } catch (JsonProcessingException e) {
-//                            e.printStackTrace();
-//                        }
-//
-//                    }
-//                }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                error.printStackTrace();
-//            }
-//        });
-//        queue.add(stringRequest);
-//
-//        /*SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-//        Date date = null;
-//        String strDate;
-//        try {
-//            date = formatter.parse("12/12/2020");
-//            strDate = formatter.format(date);
-//        } catch (ParseException e) {
-//            return;
-//        }*/
-//    }
+    public ArrayList<Post> getPosts() {
+        return mPost;
+    }
+
+    private void fetchPostsFromAPI() {
+        //Log.d("API", "cccccccccccccccccccccccccccccccccc");
+        String URL = "http://10.0.2.2:8000/api/post";
+        RequestQueue queue = Volley.newRequestQueue(getContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        //Log.d("API", response);
+                        //String responseJson = response.replaceAll("\"\"", "\"");
+                        //String responeJsonValid = StringUtils.replace(responseJson, "\"\"", "\"\\\"");
+                        JsonFactory jsonFactory = new JsonFactory();
+                        ObjectMapper objectMapper = new ObjectMapper(jsonFactory);
+                        objectMapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
+
+                        try {
+                            JsonNode arrayNode = objectMapper.readTree(response);
+
+                            for (JsonNode jsonNode : arrayNode) {
+                                mPost.add(new Post(
+                                        jsonNode.get("display_name").asText(),
+                                        jsonNode.get("avatar").asText(),
+                                        jsonNode.get("created_at").asText(),
+                                        jsonNode.get("image_title").asText(),
+                                        jsonNode.get("title").asText(),
+                                        jsonNode.get("content").asText(),
+                                        jsonNode.get("view").asText(),
+                                        jsonNode.get("vote").asText(),
+                                        jsonNode.get("comment").asText(),
+                                        jsonNode.get("clipped").asText(),
+                                        jsonNode.get("username").asText()
+                                ));
+                            }
+
+
+                        } catch (JsonProcessingException e) {
+                            e.printStackTrace();
+                        }
+                        mPostAdapter.notifyDataSetChanged();
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+        queue.add(stringRequest);
+
+        /*SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = null;
+        String strDate;
+        try {
+            date = formatter.parse("12/12/2020");
+            strDate = formatter.format(date);
+        } catch (ParseException e) {
+            return;
+        }*/
+    }
 }

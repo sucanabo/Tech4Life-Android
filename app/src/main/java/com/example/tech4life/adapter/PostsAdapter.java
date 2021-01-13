@@ -1,6 +1,7 @@
 package com.example.tech4life.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.tech4life.PostDetailActivity;
 import com.example.tech4life.R;
 import com.example.tech4life.recycleritems.Notifications;
 import com.example.tech4life.recycleritems.Post;
@@ -33,7 +35,31 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
     public PostsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View postView = inflater.inflate(R.layout.activity_post_item, parent, false);
-        PostsAdapter.ViewHolder viewHolder = new ViewHolder(postView);
+        final PostsAdapter.ViewHolder viewHolder = new ViewHolder(postView);
+
+        postView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Integer position = viewHolder.getLayoutPosition();
+                final Post post  = mPost.get(position);
+
+                Intent intent = new Intent(v.getContext(), PostDetailActivity.class);
+                intent.putExtra("POST_TITLE", post.getTitle());
+                intent.putExtra("POST_DATE", post.getDateCreated());
+                intent.putExtra("POST_VOTE", post.getVote());
+                intent.putExtra("POST_VIEW", post.getView());
+                intent.putExtra("POST_CLIP", post.getClipped());
+                intent.putExtra("POST_COMMENT", post.getComment());
+                intent.putExtra("POST_CONTENT", post.getContent());
+                intent.putExtra("POST_AUTHOR_NAME", post.getAuthorName());
+
+                intent.putExtra("AUTHOR_IMG", post.getAuthorImg());
+                intent.putExtra("AUTHOR_NAME", post.getAuthorName());
+                intent.putExtra("AUTHOR_USERNAME", post.getAuthorUsername());
+                v.getContext().startActivity(intent);
+            }
+        });
+
         return viewHolder;
     }
 
