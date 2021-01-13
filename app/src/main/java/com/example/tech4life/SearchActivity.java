@@ -45,7 +45,9 @@ public class SearchActivity extends AppCompatActivity {
                         (keyCode == KeyEvent.KEYCODE_ENTER)) {
                     // Perform action on key press
                     Toast.makeText(SearchActivity.this, searchInput.getText(), Toast.LENGTH_SHORT).show();
+                    mPost.removeAll(mPost);
                     fetchPostsFromAPI();
+
                     return true;
                 }
                 return false;
@@ -56,6 +58,12 @@ public class SearchActivity extends AppCompatActivity {
         mRecyclerPost.setAdapter(mPostAdapter);
         mRecyclerPost.setLayoutManager(new LinearLayoutManager(this));
     }
+        public void closeBtn(View view){
+            searchInput.setText("");
+        }
+        public void backBnt(View view){
+            onBackPressed();
+        }
         private void fetchPostsFromAPI() {
         //Log.d("API", "cccccccccccccccccccccccccccccccccc");
         String URL = "http://10.0.2.2:8000/api/searchpost/"+searchInput.getText().toString();

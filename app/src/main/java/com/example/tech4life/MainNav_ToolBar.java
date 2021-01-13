@@ -2,6 +2,7 @@ package com.example.tech4life;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,7 +16,13 @@ public class MainNav_ToolBar extends AppCompatActivity {
     }
     //Event Click
     public void ClickSearch(View view){
-        Intent intent= new Intent(this,SearchActivity.class);
+        OpenActivity(this,SearchActivity.class);
+    }
+    public void ClickAnnoucement(View view){
+        OpenActivity(this,SearchActivity.class);
+    }
+    public void OpenActivity(Context context, Class aClass){
+        Intent intent = new Intent(context,aClass);
         startActivity(intent);
     }
 }
