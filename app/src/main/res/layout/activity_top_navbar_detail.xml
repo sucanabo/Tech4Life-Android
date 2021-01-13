@@ -11,13 +11,13 @@
         android:layout_height="30dp"
         android:layout_marginStart="4dp"
         android:src="@drawable/ic_back"
-        android:onClick="clickBack"
+        android:onClick="clickBackToPrevious"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/post_author_img"
+        android:id="@+id/author_img"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
@@ -38,7 +38,7 @@
         android:layout_marginTop="8dp"
         android:text="Dustin Dinh"
         android:textColor="#5488C7"
-        app:layout_constraintStart_toEndOf="@+id/post_author_img"
+        app:layout_constraintStart_toEndOf="@+id/author_img"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView

@@ -32,7 +32,7 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
 
         public ViewHolder(@NonNull View itemView){
             super(itemView);
-            mImage = itemView.findViewById(R.id.imgNotification);
+            mImage = itemView.findViewById(R.id.btnBacl);
             mContent = itemView.findViewById(R.id.txtContentNotification);
             mDate = itemView.findViewById(R.id.txtDateNotification);
         }

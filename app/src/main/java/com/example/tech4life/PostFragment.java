@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import com.example.tech4life.adapter.PostsAdapter;
 import com.example.tech4life.recycleritems.Announcements;
 import com.example.tech4life.recycleritems.Post;
 import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -46,6 +48,7 @@ public class PostFragment extends Fragment {
         mPostAdapter = new PostsAdapter(getContext(), mPost);
         //Assign variable
         View view = inflater.inflate(R.layout.fragment_post,container,false);
+
 
         mPostAdapter = new PostsAdapter(getContext(),mPost);
         mRecyclerPost = view.findViewById(R.id.post_recyclerView);

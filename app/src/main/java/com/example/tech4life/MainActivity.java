@@ -17,6 +17,8 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -46,9 +48,10 @@ public class MainActivity extends AppCompatActivity {
     ActionBarDrawerToggle toggle;
     Toolbar toolbar;
     NavigationView navigationView;
+    Fragment fragment;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //Drawer
@@ -59,15 +62,17 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         navigationView = findViewById(R.id.nav_view);
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                int id=item.getItemId();
-                Fragment fragment=null;
+                int id = item.getItemId();
+
                 switch (id)
                 {
                     case R.id.menu_post:
-                        fragment=new PostFragment();
+                        fragment = new PostFragment();
+                        returnActivityStat(savedInstanceState);
                         loadFragment(fragment);
                         break;
                     case R.id.menu_series:
@@ -138,4 +143,23 @@ public class MainActivity extends AppCompatActivity {
         //Show dialog
         builder.show();
     }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState, @NonNull PersistableBundle outPersistentState) {
+        super.onSaveInstanceState(outState,outPersistentState);
+        outState.putParcelableArrayList("POST", ((PostFragment)fragment).getPosts());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        ArrayList<Post> prePosts = savedInstanceState.getParcelableArrayList("POST");
+        Log.d("POST", prePosts.toString());
+    }
+
+    protected void returnActivityStat(Bundle bundle) {
+        ArrayList<Post> prePosts = bundle.getParcelableArrayList("POST");
+        Log.d("POST", prePosts.toString());
+    }
+
+
 }

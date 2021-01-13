@@ -31,7 +31,7 @@ public class AnnouncementsAdapter extends RecyclerView.Adapter<AnnouncementsAdap
 
         public ViewHolder(@NonNull View itemView){
             super(itemView);
-            mImage = itemView.findViewById(R.id.imgNotification);
+            mImage = itemView.findViewById(R.id.btnBacl);
             mContent = itemView.findViewById(R.id.txtUsernameSeries);
         }
     }
