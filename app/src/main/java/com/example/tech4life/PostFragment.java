@@ -43,6 +43,7 @@ public class PostFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        mPostAdapter = new PostsAdapter(getContext(), mPost);
         //Assign variable
         View view = inflater.inflate(R.layout.fragment_post,container,false);
 
@@ -51,10 +52,13 @@ public class PostFragment extends Fragment {
         mRecyclerPost.setHasFixedSize(true);
         mRecyclerPost.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerPost.setAdapter(mPostAdapter);
+        mRecyclerPost.setAdapter(mPostAdapter);
         fetchPostsFromAPI();
+
         // Inflate the layout for this fragment
         return view;
     }
+
     private void fetchPostsFromAPI() {
         //Log.d("API", "cccccccccccccccccccccccccccccccccc");
         String URL = "http://10.0.2.2:8000/api/post";
@@ -93,7 +97,6 @@ public class PostFragment extends Fragment {
             }
         });
         queue.add(stringRequest);
-
         /*SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         Date date = null;
         String strDate;

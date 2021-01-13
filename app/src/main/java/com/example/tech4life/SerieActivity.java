@@ -30,7 +30,7 @@ public class SerieActivity extends AppCompatActivity {
         setContentView(R.layout.activity_serie);
         mRecyclerSeries = findViewById(R.id.serieRecyclerView);
         mSeries = new ArrayList<>();
-        createSeriesList();
+//        createSeriesList();
         mSeriesAdapter = new SeriesAdapter(this, mSeries);
         mRecyclerSeries.setAdapter(mSeriesAdapter);
         mRecyclerSeries.setLayoutManager(new LinearLayoutManager(this));
@@ -42,11 +42,11 @@ public class SerieActivity extends AppCompatActivity {
         //close app
         MainActivity.logout(this);
     }
-    private void createSeriesList() {
-        for (int i = 1; i < 50; i++){
-            mSeries.add(new Series("Username" + i, "Date", "Title", "Content", R.drawable.ic_info));
-        }
-    }
+//    private void createSeriesList() {
+//        for (int i = 1; i < 50; i++){
+//            mSeries.add(new Series("Username" + i, "Date", "Title", "Content", R.drawable.ic_info));
+//        }
+//    }
 
 
 
