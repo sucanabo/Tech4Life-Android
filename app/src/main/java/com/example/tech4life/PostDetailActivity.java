@@ -3,11 +3,14 @@ package com.example.tech4life;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.squareup.picasso.Picasso;
 
 public class PostDetailActivity extends AppCompatActivity {
@@ -69,5 +72,12 @@ public class PostDetailActivity extends AppCompatActivity {
         authorLargeName.setText(data.getString("POST_AUTHOR_NAME"));
         Picasso.get().load(authorImgPath).into(authorImg);
         Picasso.get().load(authorImgPath).into(authorLargeImg);
+    }
+    public void ClickMore(View view){
+        final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(PostDetailActivity.this,R.style.BottomSheetDialogTheme);
+        final View bottomSheetView = LayoutInflater.from(getApplicationContext())
+                .inflate(R.layout.bottom_sheet_post,(LinearLayout)findViewById(R.id.bottom_sheet_container));
+        bottomSheetDialog.setContentView(bottomSheetView);
+        bottomSheetDialog.show();
     }
 }
