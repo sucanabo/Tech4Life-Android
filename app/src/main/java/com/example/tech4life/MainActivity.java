@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
                 {
                     case R.id.menu_post:
                         fragment = new PostFragment();
-                        returnActivityStat(savedInstanceState);
+                        //returnActivityStat(savedInstanceState);
                         loadFragment(fragment);
                         break;
                     case R.id.menu_series:
@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState, @NonNull PersistableBundle outPersistentState) {
         super.onSaveInstanceState(outState,outPersistentState);
-        outState.putParcelableArrayList("POST", ((PostFragment)fragment).getPosts());
+        //outState.putParcelableArrayList("POST", ((PostFragment)fragment).getPosts());
     }
 
     @Override

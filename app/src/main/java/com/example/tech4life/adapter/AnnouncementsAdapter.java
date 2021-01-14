@@ -26,13 +26,13 @@ public class AnnouncementsAdapter extends RecyclerView.Adapter<AnnouncementsAdap
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        private ImageView mImage;
-        private TextView mContent;
+        private TextView mTitle;
+        private TextView mDate;
 
         public ViewHolder(@NonNull View itemView){
             super(itemView);
-            mImage = itemView.findViewById(R.id.btnBacl);
-            mContent = itemView.findViewById(R.id.txtUsernameSeries);
+            mTitle = itemView.findViewById(R.id.ann_txt_title);
+            mDate = itemView.findViewById(R.id.ann_date_txt);
         }
     }
 
@@ -41,7 +41,7 @@ public class AnnouncementsAdapter extends RecyclerView.Adapter<AnnouncementsAdap
     @Override
     public AnnouncementsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(mContext);
-        View announcementView = inflater.inflate(R.layout.activity_announcement, parent, false);
+        View announcementView = inflater.inflate(R.layout.announcement_item, parent, false);
         ViewHolder viewHolder = new ViewHolder(announcementView);
         return viewHolder;
 
@@ -50,7 +50,8 @@ public class AnnouncementsAdapter extends RecyclerView.Adapter<AnnouncementsAdap
     @Override
     public void onBindViewHolder(@NonNull AnnouncementsAdapter.ViewHolder holder, int position) {
         Announcements announcements = mAnnouncements.get(position);
-        holder.mContent.setText(announcements.getContent());
+        holder.mTitle.setText(announcements.getContent());
+        holder.mDate.setText(announcements.getDate());
     }
 
     @Override
