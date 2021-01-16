@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".SeriesDetailActivity"></activity>
+        <activity android:name=".ClipPostActivity"></activity>
+        <activity android:name=".SeriesDetailActivity" />
         <activity android:name=".TopNavbarDetail" />
         <activity android:name=".MainNav_ToolBar" />
         <activity android:name=".SearchActivity" />
