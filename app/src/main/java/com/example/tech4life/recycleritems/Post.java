@@ -9,7 +9,7 @@ public class Post implements Parcelable {
     private String dateCreated;
     private String img;
     private String title;
-
+    private String id;
     private String content;
 
     private String view;
@@ -79,6 +79,10 @@ public class Post implements Parcelable {
         this.dateCreated = empty;
         this.img = empty;
         this.title = empty;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getAuthorName() {
