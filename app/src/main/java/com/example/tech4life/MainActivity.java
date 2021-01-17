@@ -140,6 +140,11 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.addToBackStack(null);
     }
 
+    public void lauchUserActivity(View view){
+        Intent intent = new Intent(this, UserActivity.class);
+        startActivity(intent);
+    }
+
     public void ClickSearch(View view) {
         Intent intent = new Intent(this, SearchActivity.class);
         startActivity(intent);
