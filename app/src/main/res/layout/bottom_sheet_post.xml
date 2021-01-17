@@ -12,6 +12,8 @@
         android:orientation="vertical"
         android:layout_margin="20dp">
         <ImageView
+            android:id="@+id/post_report"
+            android:onClick="ClickReport"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/ic_report"

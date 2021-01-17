@@ -48,9 +48,8 @@ public class SeriesFragment extends Fragment {
         //Assign variable
         View view = inflater.inflate(R.layout.fragment_series,container,false);
 
-
         mRecyclerSeries = (RecyclerView) view.findViewById(R.id.series_recycler_view);
-       mRecyclerSeries.setHasFixedSize(true);
+        mRecyclerSeries.setHasFixedSize(true);
         mRecyclerSeries.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerSeries.setAdapter(mSeriesAdapter);
         mRecyclerSeries.setAdapter(mSeriesAdapter);

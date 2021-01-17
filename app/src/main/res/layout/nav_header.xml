@@ -21,6 +21,7 @@
             android:layout_marginBottom="24dp"
             android:onClick="ClickLogo"
             android:src="@drawable/empty_avatar"
+
             app:civ_border_color="#FF000000"
             app:civ_border_width="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -37,6 +38,7 @@
             android:textColor="#5488C7"
             android:textSize="24sp"
             android:textStyle="bold"
+            android:onClick="launchClipPost"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/nav_avatar"
