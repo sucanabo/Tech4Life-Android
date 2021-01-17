@@ -19,6 +19,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tech4life.Dialog.PostDialog;
+import com.example.tech4life.singleton.AccountSession;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.squareup.picasso.Picasso;
 
@@ -137,7 +138,7 @@ public class PostDetailActivity extends AppCompatActivity {
     public void clickClipPost(View view) {
         String url = "http://10.0.2.2:8000/api/clipPost";
         Log.d("post_id_nha", postId);
-        Log.d("count_nha", countView);
+        Log.d("userid_nha", AccountSession.getAccount().getId());
         RequestQueue queue = Volley.newRequestQueue(PostDetailActivity.this);
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>()
@@ -166,7 +167,7 @@ public class PostDetailActivity extends AppCompatActivity {
             protected Map<String, String> getParams()
             {
                 Map<String, String>  params = new HashMap<String, String>();
-                params.put("user_id", "1");
+                params.put("user_id", AccountSession.getAccount().getId());
                 params.put("post_id", postId);
 
                 return params;
