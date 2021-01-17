@@ -155,12 +155,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void launchUserActivity(View view){
+    public void launchUserActivity(View view) {
         startActivity(new Intent(this, UserActivity.class));
     }
-
-    public static void handleLogoutClickEvent(final Activity activity){
-
     public static void handleLogoutClickEvent(final Activity activity) {
 
         //redirect activity to setting

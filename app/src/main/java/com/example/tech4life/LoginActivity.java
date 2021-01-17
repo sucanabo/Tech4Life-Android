@@ -75,19 +75,7 @@ public class LoginActivity extends AppCompatActivity {
                                 else if(status.equals("failure")){
                                     Toast.makeText(LoginActivity.this,"Login Not Success", Toast.LENGTH_SHORT).show();
                                 }
-                            if(status.equals("success"))
-                            {
-                                Log.d("status","sussecced");
-                                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-                                final String user_name = jsonObject.getString("username").toString();
-                                final String email = jsonObject.getString("email").toString();
-                                final String token = jsonObject.getString("token").toString();
-                                final String display_name = jsonObject.getString("displayname").toString();
-                                final String avatar = jsonObject.getString("avatar").toString();
-                                final String id = jsonObject.getString("id").toString();
-                                Toast.makeText(LoginActivity.this,"\nWellcome !!!" + user_name,Toast.LENGTH_SHORT).show();
-                               AccountSession.setAccount(new Account(user_name,token, display_name, email, avatar, id));
-                               startActivity(intent);
+
                             } catch (JSONException e) {
                                 e.printStackTrace();
                                 Toast.makeText(LoginActivity.this, "App Error", Toast.LENGTH_SHORT).show();
@@ -111,10 +99,9 @@ public class LoginActivity extends AppCompatActivity {
             queue.add(stringRequest);
         }
     }
-
-
     public void handlePreviousLoginClick(View view) {
         startActivity(new Intent(this, MainActivity.class));
+    }
     public void handleRegisterClickEvent(View view) {
         Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
         startActivity(intent);

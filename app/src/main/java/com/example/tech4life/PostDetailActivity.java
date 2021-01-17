@@ -376,7 +376,6 @@ public class PostDetailActivity extends AppCompatActivity {
         };
         queue.add(postRequest);
     }
-}
   //Comment
   public void handlePostCommentClickEvent(View view) {
 
