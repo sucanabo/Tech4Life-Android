@@ -145,6 +145,11 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.addToBackStack(null);
     }
 
+
+    public void lauchUserActivity(View view){
+        Intent intent = new Intent(this, UserActivity.class);
+        startActivity(intent);
+    }
     public void ClickSearch(View view) {
         Intent intent = new Intent(this, SearchActivity.class);
         startActivity(intent);
@@ -231,12 +236,14 @@ public class MainActivity extends AppCompatActivity {
 
                             if (status.equals("success")) {
                                 Toast.makeText(MainActivity.this, "Logout Success", Toast.LENGTH_SHORT).show();
+
                                 clearAuthUserToComponents();
                                 loadFragment(new PostFragment());
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(MainActivity.this, "App Error", Toast.LENGTH_SHORT).show();
+
                         }
                     }
                 },
@@ -244,6 +251,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(MainActivity.this, "ERROR"+error.getMessage(), Toast.LENGTH_SHORT).show();
+
                     }
                 }) {
             @Override

@@ -35,6 +35,7 @@ import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.example.tech4life.singleton.AccountSession;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.squareup.picasso.Picasso;
 
@@ -68,6 +69,8 @@ public class PostDetailActivity extends AppCompatActivity {
     private ArrayList<Comment> mComment = new ArrayList<Comment>();
 
     private EditText etCommentContent;
+    private String countView;
+    private int mCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +85,7 @@ public class PostDetailActivity extends AppCompatActivity {
         loadingPostComponents();
         loadingPostData();
         loadPostComemnt();
+        updateView();
 
     }
     public void clickBackToPrevious(View view) {
@@ -110,6 +114,7 @@ public class PostDetailActivity extends AppCompatActivity {
         Bundle data = this.getIntent().getExtras();
         String authorImgPath = "http://10.0.2.2:8000/img/"+data.getString("AUTHOR_IMG");
 
+        countView = data.getString("POST_VIEW");
         postTitle.setText(data.getString("POST_TITLE"));
         postDate.setText(data.getString("POST_DATE"));
         postView.setText(data.getString("POST_VIEW"));
@@ -120,6 +125,7 @@ public class PostDetailActivity extends AppCompatActivity {
         authorLargeName.setText(data.getString("POST_AUTHOR_NAME"));
 
         postId = data.getString("POST_ID");
+
 
         Picasso.get().load(authorImgPath).into(authorImg);
         Picasso.get().load(authorImgPath).into(authorLargeImg);
@@ -168,10 +174,83 @@ public class PostDetailActivity extends AppCompatActivity {
         new PostDialog("5").show(getSupportFragmentManager(),"Dialog");
     }
 
-    public void clickClipPost(View view) {
-    }
+    public void updateView() {
+         mCount = Integer.parseInt(countView) + 1;
+         countView = String.valueOf(mCount);
 
-    public void handlePostCommentClickEvent(View view) {
+        String url = "http://10.0.2.2:8000/api/updateView/"+postId;
+        RequestQueue queue = Volley.newRequestQueue(PostDetailActivity.this);
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("response nha", response);
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("Error", error.toString());
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+//                params.put("view", countView);
+
+
+                return params;
+            }
+        };
+        queue.add(postRequest);
+    }
+  //clippost
+  public void clickClipPost(View view) {
+        String url = "http://10.0.2.2:8000/api/clipPost";
+        Log.d("post_id_nha", postId);
+        Log.d("userid_nha", AccountSession.getAccount().getId());
+        RequestQueue queue = Volley.newRequestQueue(PostDetailActivity.this);
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("response nha", response);
+                        if(response.equals("true")){
+                            Toast.makeText( PostDetailActivity.this,"Ghim thành công", Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                            Toast.makeText( PostDetailActivity.this,"Ghim thất bại", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("ErrorClip", error.toString());
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("user_id", AccountSession.getAccount().getId());
+                params.put("post_id", postId);
+
+                return params;
+            }
+        };
+        queue.add(postRequest);
+    }
+  //Comment
+  public void handlePostCommentClickEvent(View view) {
 
         if ( etCommentContent.getText().length() < 3) {
             Toast.makeText(this,"Vui lòng nhập nhiều hơn 3 ký tự", Toast.LENGTH_SHORT).show();
@@ -229,8 +308,4 @@ public class PostDetailActivity extends AppCompatActivity {
         queue.add(stringRequest);
         return;
     }
-    private void fetchPostComment() {
-
-    }
 }
-

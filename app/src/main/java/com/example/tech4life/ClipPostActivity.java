@@ -37,31 +37,12 @@ public class ClipPostActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clip_post);
 
-//        LinearLayoutManager llm = new LinearLayoutManager(this);
-//        llm.setOrientation(LinearLayoutManager.VERTICAL);
-//        mClipPostAdapter = new ClipPostAdapter(this, mClipPost);
-//        mRecyclerClipPost.setLayoutManager(llm);
-//        mRecyclerClipPost.setAdapter(mClipPostAdapter);
-//        mRecyclerClipPost = findViewById(R.id.clip_post_recyclerview);
-//        mRecyclerClipPost.setHasFixedSize(true);
         mPostAdapter = new PostsAdapter(this,mPost);
         mRecyclerPost = findViewById(R.id.clip_post_recyclerview);
         mRecyclerPost.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerPost.setAdapter(mPostAdapter);
         fetchPostsFromAPI();
     }
-
-
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-//                             Bundle savedInstanceState) {
-//        //Assign variable
-//        View view = inflater.inflate(R.layout.activity_clip_post,container,false);
-//
-//
-//
-//        // Inflate the layout for this fragment
-//        return view;
-//    }
 
     private void fetchPostsFromAPI() {
         //Log.d("API", "cccccccccccccccccccccccccccccccccc");
@@ -109,14 +90,5 @@ public class ClipPostActivity extends AppCompatActivity {
             }
         });
         queue.add(stringRequest);
-        /*SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        Date date = null;
-        String strDate;
-        try {
-            date = formatter.parse("12/12/2020");
-            strDate = formatter.format(date);
-        } catch (ParseException e) {
-            return;
-        }*/
     }
 }

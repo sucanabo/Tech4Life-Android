@@ -16,6 +16,16 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".CommentItem"></activity>
         <activity android:name=".LoginActivity"></activity>
+
+        <activity android:name=".RegisterActivity">
+        </activity>
+        <activity android:name=".LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".ClipPostActivity" />
         <activity android:name=".ReportActivity" />
         <activity android:name=".SeriesDetailActivity" />
@@ -26,13 +36,8 @@
         <activity android:name=".PostItemActivity" />
         <activity android:name=".PostDetailActivity" />
         <activity android:name=".NotificationActivity" />
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".MainActivity"></activity>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>
