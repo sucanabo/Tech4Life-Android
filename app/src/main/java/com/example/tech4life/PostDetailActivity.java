@@ -42,13 +42,16 @@ public class PostDetailActivity extends AppCompatActivity {
 
     private String postId;
 
+    private String countView;
+    private int mCount;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_detail);
         loadingPostComponents();
         loadingPostData();
-
+        updateView();
     }
     public void clickBackToPrevious(View view) {
 
@@ -76,6 +79,7 @@ public class PostDetailActivity extends AppCompatActivity {
         Bundle data = this.getIntent().getExtras();
         String authorImgPath = "http://10.0.2.2:8000/img/"+data.getString("AUTHOR_IMG");
 
+        countView = data.getString("POST_VIEW");
         postTitle.setText(data.getString("POST_TITLE"));
         postDate.setText(data.getString("POST_DATE"));
         postView.setText(data.getString("POST_VIEW"));
@@ -87,6 +91,7 @@ public class PostDetailActivity extends AppCompatActivity {
 
         postId = data.getString("POST_ID");
 
+
         Picasso.get().load(authorImgPath).into(authorImg);
         Picasso.get().load(authorImgPath).into(authorLargeImg);
     }
@@ -94,9 +99,45 @@ public class PostDetailActivity extends AppCompatActivity {
         new PostDialog("5").show(getSupportFragmentManager(),"Dialog");
     }
 
+    public void updateView() {
+         mCount = Integer.parseInt(countView) + 1;
+         countView = String.valueOf(mCount);
+
+        String url = "http://10.0.2.2:8000/api/updateView/"+postId;
+        RequestQueue queue = Volley.newRequestQueue(PostDetailActivity.this);
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("response nha", response);
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("Error", error.toString());
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+//                params.put("view", countView);
+
+
+                return params;
+            }
+        };
+        queue.add(postRequest);
+    }
+
     public void clickClipPost(View view) {
         String url = "http://10.0.2.2:8000/api/clipPost";
         Log.d("post_id_nha", postId);
+        Log.d("count_nha", countView);
         RequestQueue queue = Volley.newRequestQueue(PostDetailActivity.this);
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>()
@@ -133,4 +174,5 @@ public class PostDetailActivity extends AppCompatActivity {
         };
         queue.add(postRequest);
     }
+
 }
