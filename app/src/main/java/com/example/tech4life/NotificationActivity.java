@@ -49,7 +49,7 @@ public class NotificationActivity extends AppCompatActivity {
 
     public void ClickLogout(View view){
         //close app
-        MainActivity.logout(this);
+        MainActivity.handleLogoutClickEvent(this);
     }
      private void createNotificationsList() {
         RequestQueue queue = Volley.newRequestQueue(this);

@@ -5,6 +5,10 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
 
+    lintOptions {
+        abortOnError false
+    }
+
     defaultConfig {
         applicationId "com.example.tech4life"
         minSdkVersion 24
@@ -45,5 +49,6 @@ dependencies {
     implementation 'com.android.volley:volley:1.1.1'
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
 
 }
