@@ -54,6 +54,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                 intent.putExtra("AUTHOR_IMG", post.getAuthorImg());
                 intent.putExtra("AUTHOR_NAME", post.getAuthorName());
                 intent.putExtra("AUTHOR_USERNAME", post.getAuthorUsername());
+                intent.putExtra("POST_ID",post.getId());
                 v.getContext().startActivity(intent);
             }
         });

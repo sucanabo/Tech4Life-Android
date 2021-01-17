@@ -21,6 +21,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ClipPostActivity"></activity>
+        <activity android:name=".ReportActivity" />
         <activity android:name=".SeriesDetailActivity" />
         <activity android:name=".TopNavbarDetail" />
         <activity android:name=".MainNav_ToolBar" />

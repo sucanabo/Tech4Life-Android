@@ -144,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public static void handleLogoutClickEvent(final Activity activity){
+
         //redirect activity to setting
 //        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 //        //Set title
@@ -222,7 +223,6 @@ public class MainActivity extends AppCompatActivity {
                                 clearAuthUserToComponents();
                                 loadFragment(new PostFragment());
                             }
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(instance,"App Error",Toast.LENGTH_SHORT).show();
