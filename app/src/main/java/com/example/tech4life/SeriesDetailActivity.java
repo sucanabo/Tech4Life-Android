@@ -22,7 +22,7 @@ public class SeriesDetailActivity extends AppCompatActivity {
         onBackPressed();
     }
     public void ClickMore(View view){
-        final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(SeriesDetailActivity.this,R.style.BottomSheetDialogTheme);
+        final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(SeriesDetailActivity.this,R.style.AppBottomSheetDialogTheme);
         final View bottomSheetView = LayoutInflater.from(getApplicationContext())
                 .inflate(R.layout.bottom_sheet_series,(LinearLayout)findViewById(R.id.bottom_sheet_container));
         bottomSheetDialog.setContentView(bottomSheetView);
