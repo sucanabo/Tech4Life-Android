@@ -19,7 +19,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
-            android:onClick="ClickLogo"
+            android:onClick="launchUserActivity"
             android:src="@drawable/empty_avatar"
 
             app:civ_border_color="#FF000000"

@@ -143,6 +143,11 @@ public class MainActivity extends AppCompatActivity {
         Intent intent= new Intent(this,SearchActivity.class);
         startActivity(intent);
     }
+
+    public void launchUserActivity(View view){
+        startActivity(new Intent(this, UserActivity.class));
+    }
+
     public static void handleLogoutClickEvent(final Activity activity){
 
         //redirect activity to setting
@@ -244,4 +249,4 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         queue.add(stringRequest);
-    }
+    }}

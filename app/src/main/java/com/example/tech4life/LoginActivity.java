@@ -55,6 +55,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             if(status.equals("success"))
                             {
+                                Log.d("status","sussecced");
                                 Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                                 final String user_name = jsonObject.getString("username").toString();
                                 final String email = jsonObject.getString("email").toString();
