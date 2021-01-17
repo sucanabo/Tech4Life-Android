@@ -8,7 +8,7 @@ public class AccountSession {
     public static boolean isLogon() {
         return isLogon;
     }
-    private static Account account =  new Account();;
+    private static Account account =  new Account();
     public static Account getAccount() {
         return account;
     }
