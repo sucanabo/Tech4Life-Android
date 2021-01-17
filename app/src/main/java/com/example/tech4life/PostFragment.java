@@ -82,7 +82,14 @@ public class PostFragment extends Fragment {
                                         jsonNode.get("avatar").asText(),
                                         jsonNode.get("created_at").asText(),
                                         jsonNode.get("image_title").asText(),
-                                        jsonNode.get("title").asText()
+                                        jsonNode.get("title").asText(),
+                                        jsonNode.get("content").asText(),
+                                        jsonNode.get("view").asText(),
+                                        jsonNode.get("vote").asText(),
+                                        jsonNode.get("comment").asText(),
+                                        jsonNode.get("clipped").asText(),
+                                        jsonNode.get("username").asText(),
+                                        jsonNode.get("id").asText()
                                 ));
                             }
                             mPostAdapter.notifyDataSetChanged();
