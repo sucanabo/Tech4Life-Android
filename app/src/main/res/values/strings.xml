@@ -16,5 +16,8 @@
     <string name="open">Open</string>
     <string name="close">Close</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ok">OK</string>
+    <string name="report_sussecced">Report Sussecced</string>
+    <string name="report_fail">Report Fail. Plase check your input</string>
 
 </resources>

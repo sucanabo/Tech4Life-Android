@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.tech4life.Dialog.PostDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.squareup.picasso.Picasso;
 
@@ -74,10 +75,6 @@ public class PostDetailActivity extends AppCompatActivity {
         Picasso.get().load(authorImgPath).into(authorLargeImg);
     }
     public void ClickMore(View view){
-        final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(PostDetailActivity.this,R.style.BottomSheetDialogTheme);
-        final View bottomSheetView = LayoutInflater.from(getApplicationContext())
-                .inflate(R.layout.bottom_sheet_post,(LinearLayout)findViewById(R.id.bottom_sheet_container));
-        bottomSheetDialog.setContentView(bottomSheetView);
-        bottomSheetDialog.show();
+        new PostDialog("5").show(getSupportFragmentManager(),"Dialog");
     }
 }
