@@ -19,7 +19,6 @@ public class Post implements Parcelable {
 
     private String authorUsername;
 
-    private String id;
 
     public String getContent() {
         return content;
@@ -81,9 +80,7 @@ public class Post implements Parcelable {
         this.title = empty;
     }
 
-    public String getId() {
-        return id;
-    }
+
 
     public String getAuthorName() {
         return authorName;

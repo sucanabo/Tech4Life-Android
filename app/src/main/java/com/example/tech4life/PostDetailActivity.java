@@ -85,7 +85,7 @@ public class PostDetailActivity extends AppCompatActivity {
         authorName.setText(data.getString("AUTHOR_NAME"));
         authorLargeName.setText(data.getString("POST_AUTHOR_NAME"));
 
-        postId = data.getString("ID_POST");
+        postId = data.getString("POST_ID");
 
         Picasso.get().load(authorImgPath).into(authorImg);
         Picasso.get().load(authorImgPath).into(authorLargeImg);
