@@ -111,35 +111,11 @@
         app:srcCompat="@mipmap/ic_post_user_foreground" />
 
     <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="52dp"
-        android:layout_height="37dp"
-        app:layout_constraintStart_toStartOf="@+id/imageView7"
-        app:layout_constraintTop_toBottomOf="@+id/imageView8"
-        app:srcCompat="@mipmap/ic_upvote_user_foreground" />
-
-    <ImageView
-        android:id="@+id/imageView10"
-        android:layout_width="52dp"
-        android:layout_height="37dp"
-        app:layout_constraintStart_toStartOf="@+id/imageView7"
-        app:layout_constraintTop_toBottomOf="@+id/imageView9"
-        app:srcCompat="@mipmap/ic_downvote_user_foreground" />
-
-    <ImageView
-        android:id="@+id/imageView11"
-        android:layout_width="52dp"
-        android:layout_height="37dp"
-        app:layout_constraintStart_toStartOf="@+id/imageView7"
-        app:layout_constraintTop_toBottomOf="@+id/imageView10"
-        app:srcCompat="@mipmap/ic_comment_user_foreground" />
-
-    <ImageView
         android:id="@+id/imageView12"
         android:layout_width="52dp"
         android:layout_height="37dp"
         app:layout_constraintStart_toStartOf="@+id/imageView7"
-        app:layout_constraintTop_toBottomOf="@+id/imageView11"
+        app:layout_constraintTop_toBottomOf="@+id/imageView8"
         app:srcCompat="@mipmap/ic_following_user_foreground" />
 
     <ImageView
@@ -149,6 +125,15 @@
         app:layout_constraintStart_toStartOf="@+id/imageView7"
         app:layout_constraintTop_toBottomOf="@+id/imageView12"
         app:srcCompat="@mipmap/ic_followed_user_foreground" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="52dp"
+        android:layout_height="37dp"
+        android:onClick="lauchClipPostActivity"
+        app:layout_constraintStart_toStartOf="@+id/imageView7"
+        app:layout_constraintTop_toBottomOf="@+id/imageView13"
+        app:srcCompat="@drawable/ic_clip_foreground" />
 
     <TextView
         android:id="@+id/user_total_view"
@@ -176,42 +161,6 @@
         app:layout_constraintTop_toBottomOf="@+id/user_total_view" />
 
     <TextView
-        android:id="@+id/user_total_upvote"
-        android:layout_width="wrap_content"
-        android:layout_height="37dp"
-        android:layout_marginStart="8dp"
-        android:gravity="center"
-        android:text="Upvote"
-        android:textColor="#9B9B9B"
-        android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView9"
-        app:layout_constraintTop_toBottomOf="@+id/user_toatal_post" />
-
-    <TextView
-        android:id="@+id/user_total_downvote"
-        android:layout_width="wrap_content"
-        android:layout_height="37dp"
-        android:layout_marginStart="8dp"
-        android:gravity="center"
-        android:text="Downvote"
-        android:textColor="#9B9B9B"
-        android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView10"
-        app:layout_constraintTop_toBottomOf="@+id/user_total_upvote" />
-
-    <TextView
-        android:id="@+id/user_total_comment"
-        android:layout_width="wrap_content"
-        android:layout_height="37dp"
-        android:layout_marginStart="8dp"
-        android:gravity="center"
-        android:text="Comment"
-        android:textColor="#9B9B9B"
-        android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView11"
-        app:layout_constraintTop_toBottomOf="@+id/user_total_downvote" />
-
-    <TextView
         android:id="@+id/user_total_following"
         android:layout_width="wrap_content"
         android:layout_height="37dp"
@@ -221,7 +170,7 @@
         android:textColor="#9B9B9B"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/imageView12"
-        app:layout_constraintTop_toBottomOf="@+id/user_total_comment" />
+        app:layout_constraintTop_toBottomOf="@+id/user_toatal_post" />
 
     <TextView
         android:id="@+id/user_total_follower"
@@ -234,5 +183,18 @@
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/imageView13"
         app:layout_constraintTop_toBottomOf="@+id/user_total_following" />
+
+    <TextView
+        android:id="@+id/user_total_follower2"
+        android:layout_width="wrap_content"
+        android:layout_height="37dp"
+        android:layout_marginStart="8dp"
+        android:gravity="center"
+        android:text="Clip posts"
+        android:textColor="#9B9B9B"
+        android:textSize="16sp"
+        android:onClick="lauchClipPostActivity"
+        app:layout_constraintStart_toEndOf="@+id/imageView13"
+        app:layout_constraintTop_toBottomOf="@+id/user_total_follower" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,17 +2,28 @@ package com.example.tech4life;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
+import android.widget.Toast;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.tech4life.Dialog.PostDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.squareup.picasso.Picasso;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class PostDetailActivity extends AppCompatActivity {
 
@@ -28,6 +39,8 @@ public class PostDetailActivity extends AppCompatActivity {
     private TextView authorLargeName;
     private ImageView authorImg;
     private TextView authorUsername;
+
+    private String postId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,10 +84,53 @@ public class PostDetailActivity extends AppCompatActivity {
         postContent.loadData(data.getString("POST_CONTENT"), "text/html; charset=utf-8", "UTF-8");
         authorName.setText(data.getString("AUTHOR_NAME"));
         authorLargeName.setText(data.getString("POST_AUTHOR_NAME"));
+
+        postId = data.getString("ID_POST");
+
         Picasso.get().load(authorImgPath).into(authorImg);
         Picasso.get().load(authorImgPath).into(authorLargeImg);
     }
     public void ClickMore(View view){
         new PostDialog("5").show(getSupportFragmentManager(),"Dialog");
+    }
+
+    public void clickClipPost(View view) {
+        String url = "http://10.0.2.2:8000/api/clipPost";
+        Log.d("post_id_nha", postId);
+        RequestQueue queue = Volley.newRequestQueue(PostDetailActivity.this);
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("response nha", response);
+                        if(response.equals("true")){
+                            Toast.makeText( PostDetailActivity.this,"Ghim thành công", Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                            Toast.makeText( PostDetailActivity.this,"Ghim thất bại", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("ErrorClip", error.toString());
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("user_id", "1");
+                params.put("post_id", postId);
+
+                return params;
+            }
+        };
+        queue.add(postRequest);
     }
 }

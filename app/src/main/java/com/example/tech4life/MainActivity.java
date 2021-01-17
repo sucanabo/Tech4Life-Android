@@ -112,6 +112,12 @@ public class MainActivity extends AppCompatActivity {
         Intent intent= new Intent(this,SearchActivity.class);
         startActivity(intent);
     }
+
+    public void launchUserActivity(View view) {
+        Intent intent = new Intent(this, UserActivity.class);
+        startActivity(intent);
+    }
+
     public void ClickLogout(View view){
         //close app
         logout(this);
@@ -161,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<Post> prePosts = bundle.getParcelableArrayList("POST");
         Log.d("POST", prePosts.toString());
     }
+
 
 
 }

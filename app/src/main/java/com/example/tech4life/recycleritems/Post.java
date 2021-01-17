@@ -19,6 +19,8 @@ public class Post implements Parcelable {
 
     private String authorUsername;
 
+    private String id;
+
     public String getContent() {
         return content;
     }
@@ -101,6 +103,10 @@ public class Post implements Parcelable {
 
     public String getTitle() {
         return title;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public Post(String authorName, String authorImg, String dateCreated, String img, String title) {
