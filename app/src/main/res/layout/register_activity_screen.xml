@@ -14,6 +14,7 @@
         android:textAllCaps="false"
         android:textColor="#5488C7"
         android:textSize="23sp"
+        android:onClick="handleLoginClickEvent"
         app:layout_constraintStart_toEndOf="@+id/textView15"
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
@@ -54,11 +55,12 @@
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
+        android:onClick="handleRegisterClickEvent"
         android:theme="@style/ButtonLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/confirm_register" />
-
+s
     <TextView
         android:id="@+id/textView13"
         android:layout_width="0dp"

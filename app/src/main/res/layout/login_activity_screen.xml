@@ -166,6 +166,7 @@
         android:textAllCaps="false"
         android:textColor="#5488C7"
         android:textSize="23sp"
+        android:onClick="handleRegisterClickEvent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.82"
         app:layout_constraintStart_toEndOf="@+id/textView10"
