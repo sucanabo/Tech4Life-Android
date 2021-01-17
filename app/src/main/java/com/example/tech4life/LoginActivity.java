@@ -101,6 +101,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
+    public void handlePreviousLoginClick(View view) {
+        startActivity(new Intent(this, MainActivity.class));
     public void handleRegisterClickEvent(View view) {
         Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
         startActivity(intent);

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ClipData;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -21,6 +22,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.os.PersistableBundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -72,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
     TextView navUserDisplayname;
     TextView navUserUsername;
 
+    MenuItem btnToggle;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -89,6 +92,8 @@ public class MainActivity extends AppCompatActivity {
 
         navigationView = findViewById(R.id.nav_view);
         View header = navigationView.getHeaderView(0);
+        Menu menuNav = navigationView.getMenu();
+        btnToggle = menuNav.findItem(R.id.menu_logout);
         navUserAvatar = (CircleImageView) header.findViewById(R.id.nav_avatar);
         navUserDisplayname = (TextView) header.findViewById(R.id.nav_displayname);
         navUserUsername = (TextView) header.findViewById(R.id.nav_username);
@@ -140,11 +145,11 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.addToBackStack(null);
     }
 
+
     public void lauchUserActivity(View view){
         Intent intent = new Intent(this, UserActivity.class);
         startActivity(intent);
     }
-
     public void ClickSearch(View view) {
         Intent intent = new Intent(this, SearchActivity.class);
         startActivity(intent);
@@ -184,18 +189,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState, @NonNull PersistableBundle outPersistentState) {
         super.onSaveInstanceState(outState, outPersistentState);
-        //outState.putParcelableArrayList("POST", ((PostFragment)fragment).getPosts());
     }
 
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
-        ArrayList<Post> prePosts = savedInstanceState.getParcelableArrayList("POST");
-        Log.d("POST", prePosts.toString());
-    }
-
-    protected void returnActivityStat(Bundle bundle) {
-        ArrayList<Post> prePosts = bundle.getParcelableArrayList("POST");
-        Log.d("POST", prePosts.toString());
+        super.onRestoreInstanceState(savedInstanceState);
     }
 
     private void bindingAuthUserToComponents() {
@@ -205,6 +203,8 @@ public class MainActivity extends AppCompatActivity {
             Picasso.get().load(accountAvatarLink).into(navUserAvatar);
             navUserUsername.setText("@" + account.getUsername());
             navUserDisplayname.setText(account.getDisplayName());
+            btnToggle.setTitle("Logout");
+            btnToggle.setIcon(getResources().getDrawable(R.drawable.ic_logout));
         }
     }
 
@@ -213,9 +213,17 @@ public class MainActivity extends AppCompatActivity {
         navUserUsername.setText("@You.Are.Not.Logon");
         navUserDisplayname.setText("Guest");
         AccountSession.clearSesstion();
+        btnToggle.setTitle("Login / Register");
+        btnToggle.setIcon(getResources().getDrawable(R.drawable.common_full_open_on_phone));
     }
 
     public void handleLogoutClickEvent(MenuItem item) {
+
+        if ( !AccountSession.isLogon()) {
+            startActivity(new Intent(this, LoginActivity.class));
+            return;
+        }
+
         RequestQueue queue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://10.0.2.2:8000/api/logout",
                 new Response.Listener<String>() {
@@ -224,23 +232,26 @@ public class MainActivity extends AppCompatActivity {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             String status = jsonObject.getString("status").toString();
-                            Log.d("Login", status);
+                            Log.d("Logout", status);
 
                             if (status.equals("success")) {
-                                Toast.makeText(instance, "Logout Success", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this, "Logout Success", Toast.LENGTH_SHORT).show();
+
                                 clearAuthUserToComponents();
                                 loadFragment(new PostFragment());
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(instance, "App Error", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "App Error", Toast.LENGTH_SHORT).show();
+
                         }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(instance, error.toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "ERROR"+error.getMessage(), Toast.LENGTH_SHORT).show();
+
                     }
                 }) {
             @Override
