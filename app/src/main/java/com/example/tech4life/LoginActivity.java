@@ -48,6 +48,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         try {
+                            Log.d("respone",response);
                             JSONObject jsonObject = new JSONObject(response);
                             String status = jsonObject.getString("status").toString();
                             Log.d("Login",status);
@@ -61,9 +62,9 @@ public class LoginActivity extends AppCompatActivity {
                                 final String display_name = jsonObject.getString("displayname").toString();
                                 final String avatar = jsonObject.getString("avatar").toString();
                                 final String id = jsonObject.getString("id").toString();
-                                //Toast.makeText(LoginActivity.this,"\nWellcome !!!" + user_name,Toast.LENGTH_SHORT).show();
-                                AccountSession.setAccount(new Account(user_name,token, display_name, email, avatar, id));
-                                startActivity(intent);
+                                Toast.makeText(LoginActivity.this,"\nWellcome !!!" + user_name,Toast.LENGTH_SHORT).show();
+                               AccountSession.setAccount(new Account(user_name,token, display_name, email, avatar, id));
+                               startActivity(intent);
                             }
 
                         } catch (JSONException e) {
