@@ -1,6 +1,7 @@
 package com.example.tech4life.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +11,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.tech4life.PostDetailActivity;
 import com.example.tech4life.R;
+import com.example.tech4life.SeriesDetailActivity;
+import com.example.tech4life.recycleritems.Post;
 import com.example.tech4life.recycleritems.Series;
 import com.squareup.picasso.Picasso;
 
@@ -27,6 +31,7 @@ public class SeriesAdapter extends RecyclerView.Adapter<SeriesAdapter.ViewHolder
         this.mContext = mContext;
         this.mSeries = mSeries;
     }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
@@ -53,7 +58,20 @@ public class SeriesAdapter extends RecyclerView.Adapter<SeriesAdapter.ViewHolder
     public SeriesAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View serieView = inflater.inflate(R.layout.series_custom, parent, false);
-        ViewHolder viewHolder = new ViewHolder(serieView);
+        final ViewHolder viewHolder = new ViewHolder(serieView);
+
+        serieView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Integer position = viewHolder.getLayoutPosition();
+                final Series series  = mSeries.get(position);
+
+                Intent intent = new Intent(v.getContext(), SeriesDetailActivity.class);
+                intent.putExtra("POST_TITLE", series.getmTitle());
+                intent.putExtra("POST_DATE", series.getmDate());
+                v.getContext().startActivity(intent);
+            }
+        });
         return viewHolder;
 
     }

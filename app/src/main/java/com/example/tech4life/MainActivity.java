@@ -222,7 +222,6 @@ public class MainActivity extends AppCompatActivity {
                                 clearAuthUserToComponents();
                                 loadFragment(new PostFragment());
                             }
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(instance,"App Error",Toast.LENGTH_SHORT).show();
@@ -245,4 +244,5 @@ public class MainActivity extends AppCompatActivity {
         };
         queue.add(stringRequest);
     }
+
 }

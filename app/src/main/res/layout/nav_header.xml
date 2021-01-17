@@ -37,6 +37,7 @@
             android:textColor="#5488C7"
             android:textSize="24sp"
             android:textStyle="bold"
+            android:onClick="launchClipPost"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/nav_avatar"
