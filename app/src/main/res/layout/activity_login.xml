@@ -134,7 +134,9 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txt_password"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:password="true" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -174,6 +176,7 @@
 
     <ImageButton
         android:id="@+id/btn_previous_login"
+        android:onClick="handlePreviousLoginClick"
         android:layout_width="29dp"
         android:layout_height="46dp"
         android:layout_marginStart="8dp"

@@ -92,4 +92,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
+    public void handlePreviousLoginClick(View view) {
+        startActivity(new Intent(this, MainActivity.class));
+    }
 }
