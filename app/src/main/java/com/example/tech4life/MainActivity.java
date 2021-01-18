@@ -147,8 +147,14 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void lauchUserActivity(View view){
-        Intent intent = new Intent(this, UserActivity.class);
-        startActivity(intent);
+        if(AccountSession.getAccount().getTOKEN() == null){
+            Toast.makeText(this, "Vui lòng đăng nhập", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Intent intent = new Intent(this, UserActivity.class);
+            startActivity(intent);
+        }
+
     }
     public void ClickSearch(View view) {
         Intent intent = new Intent(this, SearchActivity.class);
