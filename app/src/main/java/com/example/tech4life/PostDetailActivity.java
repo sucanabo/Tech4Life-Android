@@ -188,7 +188,7 @@ public class PostDetailActivity extends AppCompatActivity {
         queue.add(stringRequest);
     }
     public void ClickMore(View view){
-        new PostDialog("5").show(getSupportFragmentManager(),"Dialog");
+        new PostDialog(postId).show(getSupportFragmentManager(),"Dialog");
     }
 
     public void updateView() {

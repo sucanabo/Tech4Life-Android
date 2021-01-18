@@ -21,6 +21,7 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.tech4life.singleton.AccountSession;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.dialog.MaterialDialogs;
 import com.google.android.material.textfield.TextInputEditText;
@@ -62,7 +63,7 @@ public class ReportActivity extends AppCompatActivity {
             String URL = "http://10.0.2.2:8000/api/postpostreport";
             JSONObject jsonBody = new JSONObject();
             jsonBody.put("post_id", mPostId);
-            jsonBody.put("user_id", 1);
+            jsonBody.put("user_id", AccountSession.getAccount().getId());
             jsonBody.put("reason",mOption);
             jsonBody.put("message",content.getText().toString());
             final String requestBody = jsonBody.toString();
