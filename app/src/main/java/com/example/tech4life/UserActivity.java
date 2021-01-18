@@ -29,7 +29,9 @@ public class UserActivity extends AppCompatActivity {
         showStatisticPost();
         showStatisticView();
     }
-
+    public void ClickEdit(View view){
+        startActivity(new Intent(this,EditProfile.class));
+    }
     public void lauchClipPostActivity(View view) {
         Intent intent = new Intent(this, ClipPostActivity.class);
         startActivity(intent);

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditProfile">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/edit_avt"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:src="@drawable/avt" />
+
+            <Button
+
+                android:id="@+id/edit_browser_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:textStyle="bold"
+                android:backgroundTint="@color/colorPrimary"
+                android:textColor="@color/colorWhite"
+                android:text="Browse" />
+
+            <Button
+                android:id="@+id/edit_upload_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textStyle="bold"
+                android:backgroundTint="@color/colorPrimary"
+                android:textColor="@color/colorWhite"
+                android:text="Upload Image" />
+            <EditText
+                android:id="@+id/username_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:layout_marginTop="36dp"
+                android:text="User Name" />
+
+            <EditText
+                android:id="@+id/display_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:layout_marginTop="16dp"
+                android:inputType="textPersonName"
+                android:text="Name" />
+            <EditText
+
+                android:id="@+id/password_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Confirm password to chage infomation"
+                android:layout_marginTop="32dp"
+                android:inputType="textPassword" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="20dp"
+                android:layout_gravity="end">
+                <Button
+                    android:onClick="ClickCancel"
+                    android:id="@+id/edit_cancel_btn"
+                    android:layout_width="150dp"
+                    android:layout_height="60dp"
+                    android:text="Cancel"
+                    android:backgroundTint="#fff"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginTop="20dp"/>
+                <Button
+                    android:onClick="ClickSave"
+                    android:id="@+id/edit_save_btn"
+                    android:layout_width="150dp"
+                    android:layout_height="60dp"
+                    android:textStyle="bold"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:textColor="@color/colorWhite"
+                    android:text="Save"
+                    android:layout_marginTop="20dp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

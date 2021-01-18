@@ -1,152 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/user_activity_background"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/ivUserAvt"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="100dp"
-        app:cardCornerRadius="75dp"
-        app:cardElevation="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="366dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/shadow_container"
+        android:paddingTop="40dp"
+        android:paddingBottom="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/nav_avatar"
+        <ImageButton
+            android:id="@+id/user_tag_btn5"
+            android:layout_width="69dp"
+            android:layout_height="64dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/user_series_btn"
+            app:layout_constraintTop_toTopOf="@+id/user_series_btn"
+            app:srcCompat="@mipmap/ic_categories_foreground" />
+
+        <ImageButton
+            android:id="@+id/user_series_btn"
+            android:layout_width="69dp"
+            android:layout_height="64dp"
+            android:layout_marginTop="35dp"
+            app:layout_constraintEnd_toStartOf="@+id/user_tag_btn5"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/user_post_btn"
+            app:layout_constraintTop_toBottomOf="@+id/user_email"
+            app:srcCompat="@mipmap/ic_series_foreground" />
+
+        <ImageButton
+            android:id="@+id/user_post_btn"
+            android:layout_width="69dp"
+            android:layout_height="64dp"
+            app:layout_constraintEnd_toStartOf="@+id/user_series_btn"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/user_series_btn"
+            app:srcCompat="@mipmap/ic_posts_foreground" />
+
+        <TextView
+            android:id="@+id/user_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/avt"
-            tools:layout_editor_absoluteX="-66dp"
-            tools:layout_editor_absoluteY="-19dp" />
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="%email%"
+            android:textColor="#9B9B9B"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/user_displayname"
+            app:layout_constraintStart_toStartOf="@+id/user_displayname"
+            app:layout_constraintTop_toBottomOf="@+id/user_displayname" />
 
-    </androidx.cardview.widget.CardView>
+        <TextView
+            android:id="@+id/user_displayname"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:gravity="center"
+            android:text="%display name%"
+            android:textColor="#5488C7"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivUserAvt" />
 
-    <TextView
-        android:id="@+id/user_displayname"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
-        android:gravity="center"
-        android:text="%display name%"
-        android:textColor="#5488C7"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivUserAvt" />
+        <androidx.cardview.widget.CardView
+            android:id="@+id/ivUserAvt"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="106dp"
+            android:layout_marginEnd="110dp"
+            app:cardCornerRadius="75dp"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/user_email"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="8dp"
-        android:gravity="center"
-        android:text="%email%"
-        android:textColor="#9B9B9B"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_displayname" />
+            <ImageView
+                android:id="@+id/nav_avatar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/avt"
+                tools:layout_editor_absoluteX="-66dp"
+                tools:layout_editor_absoluteY="-19dp" />
 
-    <ImageButton
-        android:id="@+id/user_post_btn"
-        android:layout_width="69dp"
-        android:layout_height="64dp"
-        android:layout_marginStart="74dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_email"
-        app:srcCompat="@mipmap/ic_posts_foreground" />
+        </androidx.cardview.widget.CardView>
 
-    <ImageButton
-        android:id="@+id/user_series_btn"
-        android:layout_width="69dp"
-        android:layout_height="64dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toEndOf="@+id/user_post_btn"
-        app:layout_constraintTop_toBottomOf="@+id/user_email"
-        app:srcCompat="@mipmap/ic_series_foreground" />
-
-    <ImageButton
-        android:id="@+id/user_tag_btn5"
-        android:layout_width="69dp"
-        android:layout_height="64dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toEndOf="@+id/user_series_btn"
-        app:layout_constraintTop_toBottomOf="@+id/user_email"
-        app:srcCompat="@mipmap/ic_categories_foreground" />
+        <ImageView
+            android:onClick="ClickEdit"
+            android:id="@+id/edit_btn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/rounded_border"
+            app:layout_constraintBottom_toBottomOf="@+id/ivUserAvt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/ivUserAvt"
+            app:srcCompat="@drawable/ic_edit_foreground" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
         android:id="@+id/imageView7"
         android:layout_width="52dp"
         android:layout_height="37dp"
-        android:layout_marginStart="88dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="62dp"
+        android:layout_marginTop="32dp"
+        android:foregroundGravity="center"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_post_btn"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
         app:srcCompat="@mipmap/ic_view_user_foreground" />
-
-    <ImageView
-        android:id="@+id/imageView8"
-        android:layout_width="52dp"
-        android:layout_height="37dp"
-        app:layout_constraintStart_toStartOf="@+id/imageView7"
-        app:layout_constraintTop_toBottomOf="@+id/imageView7"
-        app:srcCompat="@mipmap/ic_post_user_foreground" />
-
-    <ImageView
-        android:id="@+id/imageView12"
-        android:layout_width="52dp"
-        android:layout_height="37dp"
-        app:layout_constraintStart_toStartOf="@+id/imageView7"
-        app:layout_constraintTop_toBottomOf="@+id/imageView8"
-        app:srcCompat="@mipmap/ic_following_user_foreground" />
-
-    <ImageView
-        android:id="@+id/imageView13"
-        android:layout_width="52dp"
-        android:layout_height="37dp"
-        app:layout_constraintStart_toStartOf="@+id/imageView7"
-        app:layout_constraintTop_toBottomOf="@+id/imageView12"
-        app:srcCompat="@mipmap/ic_followed_user_foreground" />
 
     <ImageView
         android:id="@+id/imageView5"
         android:layout_width="52dp"
         android:layout_height="37dp"
+        android:layout_marginTop="8dp"
         android:onClick="lauchClipPostActivity"
-        app:layout_constraintStart_toStartOf="@+id/imageView7"
+        app:layout_constraintStart_toStartOf="@+id/imageView13"
         app:layout_constraintTop_toBottomOf="@+id/imageView13"
         app:srcCompat="@drawable/ic_clip_foreground" />
 
+    <ImageView
+        android:id="@+id/imageView12"
+        android:layout_width="52dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@+id/imageView8"
+        app:layout_constraintTop_toBottomOf="@+id/imageView8"
+        app:srcCompat="@mipmap/ic_following_user_foreground" />
+
     <TextView
-        android:id="@+id/user_total_view"
+        android:id="@+id/user_total_follower2"
         android:layout_width="wrap_content"
         android:layout_height="37dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="4dp"
         android:gravity="center"
-        android:text="Total post views"
+        android:onClick="lauchClipPostActivity"
+        android:text="Clip posts"
         android:textColor="#9B9B9B"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView7"
-        app:layout_constraintTop_toBottomOf="@+id/user_series_btn" />
+        app:layout_constraintStart_toEndOf="@+id/imageView13"
+        app:layout_constraintTop_toTopOf="@+id/imageView5" />
+
+    <ImageView
+        android:id="@+id/imageView13"
+        android:layout_width="52dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/user_total_follower"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/imageView12"
+        app:layout_constraintTop_toBottomOf="@+id/imageView12"
+        app:srcCompat="@mipmap/ic_followed_user_foreground" />
+
+    <TextView
+        android:id="@+id/user_toatal_post"
+        android:layout_width="wrap_content"
+        android:layout_height="37dp"
+        android:layout_marginStart="4dp"
+        android:gravity="center"
+        android:text="Posts"
+        android:textColor="#9B9B9B"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView8"
+        app:layout_constraintTop_toTopOf="@+id/imageView8" />
 
     <TextView
         android:id="@+id/txt_toatal_post"
@@ -176,49 +207,44 @@
         android:id="@+id/user_toatal_post"
         android:layout_width="wrap_content"
         android:layout_height="37dp"
-        android:layout_marginStart="8dp"
-        android:gravity="center"
-        android:text="Posts"
-        android:textColor="#9B9B9B"
-        android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView8"
-        app:layout_constraintTop_toBottomOf="@+id/user_total_view" />
-
-    <TextView
-        android:id="@+id/user_total_following"
-        android:layout_width="wrap_content"
-        android:layout_height="37dp"
-        android:layout_marginStart="8dp"
-        android:gravity="center"
-        android:text="Following by"
-        android:textColor="#9B9B9B"
-        android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView12"
-        app:layout_constraintTop_toBottomOf="@+id/user_toatal_post" />
-
-    <TextView
-        android:id="@+id/user_total_follower"
-        android:layout_width="wrap_content"
-        android:layout_height="37dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="4dp"
         android:gravity="center"
         android:text="Followed by"
         android:textColor="#9B9B9B"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/imageView13"
-        app:layout_constraintTop_toBottomOf="@+id/user_total_following" />
+        app:layout_constraintTop_toTopOf="@+id/imageView13" />
 
     <TextView
-        android:id="@+id/user_total_follower2"
+        android:id="@+id/user_total_following"
         android:layout_width="wrap_content"
         android:layout_height="37dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="4dp"
         android:gravity="center"
-        android:text="Clip posts"
+        android:text="Following by"
         android:textColor="#9B9B9B"
         android:textSize="16sp"
-        android:onClick="lauchClipPostActivity"
-        app:layout_constraintStart_toEndOf="@+id/imageView13"
-        app:layout_constraintTop_toBottomOf="@+id/user_total_follower" />
+        app:layout_constraintStart_toEndOf="@+id/imageView12"
+        app:layout_constraintTop_toTopOf="@+id/imageView12" />
+
+    <TextView
+        android:id="@+id/user_total_view"
+        android:layout_width="wrap_content"
+        android:layout_height="37dp"
+        android:gravity="center"
+        android:text="Total post views"
+        android:textColor="#9B9B9B"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView7"
+        app:layout_constraintTop_toTopOf="@+id/imageView7" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="52dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@+id/imageView7"
+        app:layout_constraintTop_toBottomOf="@+id/imageView7"
+        app:srcCompat="@mipmap/ic_post_user_foreground" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
