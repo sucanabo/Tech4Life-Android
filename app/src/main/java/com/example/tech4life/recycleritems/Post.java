@@ -19,6 +19,8 @@ public class Post implements Parcelable {
 
     private String authorUsername;
 
+    private String user_id;
+
 
     public String getContent() {
         return content;
@@ -55,7 +57,8 @@ public class Post implements Parcelable {
                 String comment,
                 String clipped,
                 String authorUsername,
-                String id) {
+                String id,
+                String user_id) {
         this.authorName = authorName;
         this.authorImg = authorImg;
         this.dateCreated = dateCreated;
@@ -68,6 +71,7 @@ public class Post implements Parcelable {
         this.clipped = clipped;
         this.authorUsername = authorUsername;
         this.id = id;
+        this.user_id = user_id;
     }
 
 
@@ -104,6 +108,10 @@ public class Post implements Parcelable {
 
     public String getId() {
         return id;
+    }
+
+    public String getUser_id() {
+        return user_id;
     }
 
     public Post(String authorName, String authorImg, String dateCreated, String img, String title) {

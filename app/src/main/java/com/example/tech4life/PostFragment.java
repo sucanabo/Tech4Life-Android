@@ -92,7 +92,8 @@ public class PostFragment extends Fragment {
                                         jsonNode.get("comment").asText(),
                                         jsonNode.get("clipped").asText(),
                                         jsonNode.get("username").asText(),
-                                        jsonNode.get("id").asText()
+                                        jsonNode.get("id").asText(),
+                                        jsonNode.get("user_id").asText()
                                 ));
                             }
                             mPostAdapter.notifyDataSetChanged();

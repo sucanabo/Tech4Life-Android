@@ -85,6 +85,7 @@ public class PostDetailActivity extends AppCompatActivity {
     private String countView;
     private int mCount;
 
+    private String userId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -141,7 +142,7 @@ public class PostDetailActivity extends AppCompatActivity {
         authorLargeName.setText(data.getString("POST_AUTHOR_NAME"));
 
         postId = data.getString("POST_ID");
-
+        userId = data.getString("USER_ID");
 
         Picasso.get().load(authorImgPath).into(authorImg);
         Picasso.get().load(authorImgPath).into(authorLargeImg);
@@ -227,44 +228,50 @@ public class PostDetailActivity extends AppCompatActivity {
     }
   //clippost
   public void clickClipPost(View view) {
-        String url = "http://10.0.2.2:8000/api/clipPost";
-        Log.d("post_id_nha", postId);
-        Log.d("userid_nha", AccountSession.getAccount().getId());
-        RequestQueue queue = Volley.newRequestQueue(PostDetailActivity.this);
-        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>()
-                {
-                    @Override
-                    public void onResponse(String response) {
-                        Log.d("response nha", response);
-                        if(response.equals("true")){
-                            Toast.makeText( PostDetailActivity.this,"Ghim thành công", Toast.LENGTH_SHORT).show();
-                        }
-                        else
-                        {
-                            Toast.makeText( PostDetailActivity.this,"Ghim thất bại", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                },
-                new Response.ErrorListener()
-                {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.e("ErrorClip", error.toString());
-                    }
-                }
-        ) {
-            @Override
-            protected Map<String, String> getParams()
-            {
-                Map<String, String>  params = new HashMap<String, String>();
-                params.put("user_id", AccountSession.getAccount().getId());
-                params.put("post_id", postId);
+        if(AccountSession.getAccount().getTOKEN() == null){
+            Toast.makeText( PostDetailActivity.this,"Vui lòng đăng nhập !", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            String url = "http://10.0.2.2:8000/api/clipPost";
+            Log.d("post_id_nha", postId);
 
-                return params;
-            }
-        };
-        queue.add(postRequest);
+            RequestQueue queue = Volley.newRequestQueue(PostDetailActivity.this);
+            StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                    new Response.Listener<String>()
+                    {
+                        @Override
+                        public void onResponse(String response) {
+                            Log.d("response nha", response);
+                            if(response.equals("true")){
+                                Toast.makeText( PostDetailActivity.this,"Ghim thành công", Toast.LENGTH_SHORT).show();
+                            }
+                            else
+                            {
+                                Toast.makeText( PostDetailActivity.this,"Đã gỡ ghim", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    },
+                    new Response.ErrorListener()
+                    {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Log.e("ErrorClip", error.toString());
+                        }
+                    }
+            ) {
+                @Override
+                protected Map<String, String> getParams()
+                {
+                    Map<String, String>  params = new HashMap<String, String>();
+                    params.put("user_id", userId);
+                    params.put("post_id", postId);
+
+                    return params;
+                }
+            };
+            queue.add(postRequest);
+        }
+
     }
     public void ClickVote(View view) {
         ImageView upVote = (ImageView) findViewById(R.id.upvote);
