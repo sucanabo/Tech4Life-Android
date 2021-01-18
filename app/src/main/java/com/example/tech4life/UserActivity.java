@@ -15,7 +15,9 @@ public class UserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
     }
-
+    public void ClickEdit(View view){
+        startActivity(new Intent(this,EditProfile.class));
+    }
     public void lauchClipPostActivity(View view) {
         Intent intent = new Intent(this, ClipPostActivity.class);
         startActivity(intent);

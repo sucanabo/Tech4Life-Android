@@ -16,11 +16,11 @@ public class Account {
     }
 
     public Account(String username, String TOKEN, String displayName, String email, String avatar, String id) {
-        this.username = username;
+        this.setUsername(username);
         this.TOKEN = TOKEN;
-        this.displayName = displayName;
-        this.email = email;
-        this.avatar = avatar;
+        this.setDisplayName(displayName);
+        this.setEmail(email);
+        this.setAvatar(avatar);
         this.id = id;
     }
 
@@ -42,5 +42,21 @@ public class Account {
 
     public String getId() {
         return id;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 }
