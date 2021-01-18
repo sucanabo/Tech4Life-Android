@@ -72,7 +72,8 @@ public class ClipPostActivity extends AppCompatActivity {
                                         jsonNode.get("comment").asText(),
                                         jsonNode.get("clipped").asText(),
                                         jsonNode.get("username").asText(),
-                                        jsonNode.get("id").asText()
+                                        jsonNode.get("id").asText(),
+                                        jsonNode.get("user_id").asText()
 
                                 ));
                             }
