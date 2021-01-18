@@ -25,6 +25,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -75,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
     TextView navUserUsername;
 
     MenuItem btnToggle;
+    Button btnFollow;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -84,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
         //Drawer
 
         drawerLayout = findViewById(R.id.drawer_layout);
+        btnFollow = findViewById(R.id.btnFollowCategory);
         toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
         toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
@@ -92,14 +95,14 @@ public class MainActivity extends AppCompatActivity {
 
         navigationView = findViewById(R.id.nav_view);
         View header = navigationView.getHeaderView(0);
-        Menu menuNav = navigationView.getMenu();
+        final Menu menuNav = navigationView.getMenu();
         btnToggle = menuNav.findItem(R.id.menu_logout);
         navUserAvatar = (CircleImageView) header.findViewById(R.id.nav_avatar);
         navUserDisplayname = (TextView) header.findViewById(R.id.nav_displayname);
         navUserUsername = (TextView) header.findViewById(R.id.nav_username);
-
+        final MenuItem followItem = menuNav.findItem(R.id.menu_following);
+        final MenuItem postItem = menuNav.findItem(R.id.menu_post);
         bindingAuthUserToComponents();
-
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -115,8 +118,20 @@ public class MainActivity extends AppCompatActivity {
                         fragment = new SeriesFragment();
                         loadFragment(fragment);
                         break;
+                    case R.id.menu_following:
+                        if (!AccountSession.isLogon()) {
+                            navigationView.invalidate();
+                            fragment = new PostFragment();
+                            loadFragment(fragment);
+                            Toast.makeText(instance, "Bạn cần phải đăng nhập trước", Toast.LENGTH_SHORT).show();
+                            break;
+                        }
+
+                        fragment = new PostFollowingFragment();
+                        loadFragment(fragment);
+                        break;
                     case R.id.menu_tags:
-                        fragment = new TagsFragment();
+                        fragment = new CategoryFragment();
                         loadFragment(fragment);
                         break;
                     case R.id.menu_annoucement:
@@ -266,5 +281,58 @@ public class MainActivity extends AppCompatActivity {
         };
         queue.add(stringRequest);
 
+    }
+    public void handleCategoryFollow(final View view) {
+
+        if ( !AccountSession.isLogon()) {
+            Toast.makeText( this,"Vui lòng đăng nhập trước khi theo dỗi!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        String url = "http://10.0.2.2:8000/api/followcategory";
+        RequestQueue queue = Volley.newRequestQueue(this);
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response) {
+
+                        Log.d("JSON", response);
+                        JsonFactory jsonFactory = new JsonFactory();
+                        ObjectMapper objectMapper = new ObjectMapper(jsonFactory);
+
+                        try {
+                            JsonNode arrayNode = objectMapper.readTree(response);
+
+                            if ( arrayNode.get("status").asText() == "followed") {
+                                ((Button)view).setText("Followed");
+                                ((Button)view).setTextColor(255);
+                            } else {
+                                ((Button)view).setText("Follow");
+                            }
+                        } catch (Exception e) {
+
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("ErrorClip", error.toString());
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("user_id", AccountSession.getAccount().getId());
+                params.put("category_id", ((Button)view).getTag(R.string.KEY).toString());
+
+                return params;
+            }
+        };
+        queue.add(postRequest);
     }
 }
