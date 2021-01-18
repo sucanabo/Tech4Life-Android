@@ -5,7 +5,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.accounts.AccountsException;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -271,18 +273,36 @@ public class PostDetailActivity extends AppCompatActivity {
         ImageView downVote = (ImageView) findViewById(R.id.downvote);
 
         if(mCurrentUser == null){
-            Toast.makeText(this,"Vui lòng đăng nhập để thực hiện chức năng",Toast.LENGTH_LONG);
-            startActivity(new Intent(this,LoginActivity.class));
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            //Set title
+            builder.setTitle("Login required !");
+            //Set mess
+            builder.setMessage("You must be login to do this action.");
+            //Positive yes button
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+                }
+            });
+            //Negative no button
+            builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    //Dissmiss dialog
+                    dialog.dismiss();
+                }
+            });
+            //Show dialog
+            builder.show();
         }
         //Check up or down
 
         if(view.getId() == R.id.upvote){
             mVoteOption = "1";
-            Toast.makeText(this,"upvote",Toast.LENGTH_SHORT).show();
         }
         if(view.getId() == R.id.downvote){
             mVoteOption = "-1";
-            Toast.makeText(this,"downvote",Toast.LENGTH_SHORT).show();
         }
         //Call API
         String url = "http://10.0.2.2:8000/api/postvote";
