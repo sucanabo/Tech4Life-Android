@@ -5,6 +5,9 @@
             android:checked="true"
             android:icon="@drawable/ic_post"
             android:title="Post"/>
+        <item android:id="@+id/menu_following"
+            android:icon="@android:drawable/btn_star"
+            android:title="Following" />
         <item android:id="@+id/menu_series"
             android:icon="@drawable/ic_series"
             android:title="Series"/>
